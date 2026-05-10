@@ -691,6 +691,19 @@
       .carousel-slide { aspect-ratio: 4 / 5; }
     }
 
+    /* SoundCloud embed */
+    .soundcloud-embed {
+      margin-top: 2rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(44, 31, 36, 0.1);
+    }
+    .soundcloud-embed iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+
     /* Get involved */
     .involve {
       background: var(--ink);
@@ -742,9 +755,10 @@
       <a href="#top" class="brand">Mooncow Fest</a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#music">Music</a></li>
         <li><a href="#land">The land</a></li>
         <li><a href="#tiers">Tiers</a></li>
-        <li><a href="#gallery">Gallery</a></li>
         <li class="nav-cta-item"><a href="#involve" class="nav-cta">Join in</a></li>
       </ul>
     </nav>
@@ -755,7 +769,7 @@
     <section class="hero">
       <div class="hero-content">
         <h1>Mooncow <span class="amp">Fest!</span></h1>
-        <p class="hero-tagline">Three days in a field on the South Downs. Created by MoonCows, but also you!</p>
+        <p class="hero-tagline">Three days in a field on the South Downs. Built by everyone who turns up.</p>
         <div class="hero-meta">
           <div>
             <strong>5 — 7 June 2026</strong>
@@ -780,8 +794,8 @@
     <section class="about" id="about">
       <div class="about-inner">
         <div>
-          <h2>A weekend in a field, co-created</h2>
-          <p class="lead">Mooncow Fest is a communal festival (gathering?) of around 80–150 friends, friends-of-friends, and lovely strangers — pitched on a working farm in East Sussex. There are no headliners, no wristbands, no sponsors. Just people, fields, fire, music, food cooked together, and the occasional cow.</p>
+          <h2>A weekend in a field, made by everyone who turns up.</h2>
+          <p class="lead">Mooncow Fest is an exciting gathering of around 80–200 friends, friends-of-friends, and lovely strangers — pitched on a working farm in the South Downs. There are no headliners, no wristbands, no sponsors. Just people, fields, fire, music, food cooked together, and the occasional cow.</p>
         </div>
         <div>
           <p class="about-quote">The event is co-created by the participants. Bring yourself, bring your ideas, your music, and anything you'd like to share — a workshop, a talk, a DJ set, food, anything!</p>
@@ -816,6 +830,25 @@
         <button class="carousel-btn next" aria-label="Next slide" type="button">›</button>
       </div>
       <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <section id="music">
+      <span class="section-label">~ the music ~</span>
+      <h2>Who's playing? TBD.</h2>
+      <p class="lead">Mooncow doesn't book headliners — the lineup comes from whoever brings their decks, their tracks, or their voice. The 2026 schedule is still being written. Want to play? Drop yourself in the <a href="https://docs.google.com/spreadsheets/d/16zPT9-D0DYkgUZ8ITXuOPCr7fpj_F8mRWJLlNAQEWqs/edit" target="_blank" rel="noopener" style="color: var(--terracotta-deep);">spreadsheet</a> under "DJs &amp; Music".</p>
+      <p style="margin-top: 1.5rem; color: var(--ink-soft);">In the meantime, here's a taste of last year's sets — straight from the herd:</p>
+      <div class="soundcloud-embed">
+        <iframe
+          width="100%"
+          height="450"
+          scrolling="no"
+          allow="autoplay"
+          title="Mooncows &amp; Friends Nowhere 2024 — SoundCloud playlist"
+          src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/apsara_music/sets/mooncows-friends-nowhere-2024&color=%23c95746&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.95rem; color: var(--ink-soft);">
+        <a href="https://soundcloud.com/apsara_music/sets/mooncows-friends-nowhere-2024" target="_blank" rel="noopener" style="color: var(--terracotta-deep);">Open the playlist on SoundCloud ↗</a>
+      </p>
     </section>
 
     <section id="land">
