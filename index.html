@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mooncow Fest 2026 — 5–7 June, South Downs</title>
+  <meta name="description" content="A small, handmade gathering on the South Downs. 5–7 June 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400&family=Caveat:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f7eedd;
+      --cream-deep: #efe2c8;
+      --paper: #fbf5e8;
+      --ink: #2c1f24;
+      --ink-soft: #5a4750;
+      --terracotta: #c95746;
+      --terracotta-deep: #a8412f;
+      --rose: #e09aa6;
+      --sage: #8a9a7b;
+      --sky: #a8c5d6;
+      --sun: #f0b87a;
+      --plum: #6b3a4f;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.65;
+      font-size: 17px;
+      overflow-x: hidden;
+    }
+
+    /* Subtle paper texture via gradient noise */
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(224, 154, 166, 0.08), transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(168, 197, 214, 0.08), transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header */
+    header {
+      position: sticky; top: 0;
+      z-index: 100;
+      background: rgba(251, 245, 232, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(44, 31, 36, 0.08);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.6rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+
+    .nav-cta {
+      background: var(--terracotta);
+      color: var(--paper) !important;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      transition: background 0.2s, transform 0.2s;
+      font-size: 0.9rem !important;
+    }
+    .nav-cta:hover { background: var(--terracotta-deep); transform: translateY(-1px); }
+
+    /* On smaller screens, hide secondary nav links — keep brand + CTA only */
+    @media (max-width: 760px) {
+      nav { padding: 0.85rem 1.2rem; }
+      .brand { font-size: 1.05rem; }
+      .nav-links li:not(.nav-cta-item) { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      padding: 4rem 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #1a0a2e 0%, #2d1b3d 40%, #3d1f3a 100%);
+      color: var(--paper);
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 3rem 1.3rem;
+        min-height: auto;
+        text-align: center;
+      }
+      .hero-poster {
+        max-width: 280px;
+        order: -1; /* poster on top on mobile */
+      }
+      .hero h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
+      .hero-tagline { font-size: 1rem; margin-bottom: 1.5rem; }
+      .hero-meta { gap: 1.2rem; margin-bottom: 1.8rem; font-size: 1rem; }
+      .hero-meta strong { font-size: 1.15rem; }
+      .hero-buttons { gap: 0.7rem; }
+      .hero .btn { padding: 0.75rem 1.4rem; font-size: 0.95rem; }
+    }
+
+    /* Glowing background dots, evoking the LED poster */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 12% 18%, rgba(220, 50, 80, 0.35), transparent 8%),
+        radial-gradient(circle at 78% 25%, rgba(80, 130, 220, 0.3), transparent 8%),
+        radial-gradient(circle at 25% 75%, rgba(80, 220, 150, 0.25), transparent 8%),
+        radial-gradient(circle at 88% 82%, rgba(220, 80, 120, 0.3), transparent 8%),
+        radial-gradient(circle at 50% 50%, rgba(200, 120, 220, 0.15), transparent 30%);
+      pointer-events: none;
+    }
+
+    .hero-poster {
+      position: relative;
+      z-index: 2;
+      justify-self: center;
+      max-width: 420px;
+      width: 100%;
+      aspect-ratio: 9 / 14;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 30px 60px rgba(0, 0, 0, 0.5),
+        0 0 80px rgba(220, 50, 120, 0.25);
+      transform: rotate(-2deg);
+      transition: transform 0.4s;
+      background:
+        radial-gradient(circle at 50% 50%, #6b2858 0%, #2d1b3d 70%);
+    }
+
+    .hero-poster:hover { transform: rotate(0) scale(1.02); }
+
+    .hero-poster img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-poster-fallback {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(247, 238, 221, 0.5);
+      font-family: 'Caveat', cursive;
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 2rem;
+      z-index: -1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 540px;
+      justify-self: start;
+    }
+
+    @media (max-width: 900px) {
+      .hero-content { justify-self: center; }
+    }
+
+    .hero-eyebrow {
+      font-family: 'Caveat', cursive;
+      font-size: 1.5rem;
+      color: var(--rose);
+      margin-bottom: 0.5rem;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+    }
+
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--paper);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 .amp {
+      font-style: italic;
+      font-weight: 800;
+      color: var(--rose);
+      display: inline-block;
+      transform-origin: bottom center;
+      animation: wiggle 4s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 92%, 100% { transform: rotate(0deg); }
+      94% { transform: rotate(-3deg); }
+      96% { transform: rotate(3deg); }
+      98% { transform: rotate(-2deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero h1 .amp { animation: none; }
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      color: rgba(247, 238, 221, 0.8);
+      margin-bottom: 2rem;
+      max-width: 460px;
+      line-height: 1.5;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-meta { justify-content: center; }
+    }
+
+    .hero-meta strong {
+      display: block;
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      color: var(--paper);
+      margin-bottom: 0.1rem;
+    }
+
+    .hero-meta span {
+      color: rgba(247, 238, 221, 0.6);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .hero-buttons {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-buttons { justify-content: center; }
+    }
+
+    .hero .btn-primary {
+      background: var(--terracotta);
+      color: var(--paper);
+    }
+    .hero .btn-primary:hover {
+      background: var(--rose);
+      color: var(--ink);
+    }
+
+    .hero .btn-secondary {
+      color: var(--paper);
+      border-color: rgba(247, 238, 221, 0.4);
+    }
+    .hero .btn-secondary:hover {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--paper);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .btn-primary:hover {
+      background: var(--plum);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(44, 31, 36, 0.25);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1.5px solid var(--ink);
+    }
+    .btn-secondary:hover {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    /* Sections */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 5rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 760px) {
+      section { padding: 3.5rem 1.3rem; }
+    }
+
+    .section-label {
+      font-family: 'Caveat', cursive;
+      font-size: 1.4rem;
+      color: var(--terracotta);
+      transform: rotate(-1deg);
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      max-width: 720px;
+    }
+
+    h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+    }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .lead {
+      font-size: 1.2rem;
+      color: var(--ink-soft);
+      max-width: 700px;
+      line-height: 1.55;
+    }
+
+    .lead::first-letter {
+      font-family: 'Fraunces', serif;
+      font-size: 3rem;
+      float: left;
+      line-height: 0.85;
+      padding: 0.3rem 0.55rem 0 0;
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .lead { font-size: 1.05rem; }
+      .lead::first-letter { font-size: 2.5rem; padding: 0.2rem 0.45rem 0 0; }
+      h2 { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    }
+
+    /* About */
+    .about {
+      background: var(--cream);
+      max-width: none;
+      padding: 6rem 2rem;
+    }
+
+    @media (max-width: 760px) {
+      .about, .tiers, .involve { padding: 4rem 1.3rem; }
+    }
+
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 760px) {
+      .about-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .about-quote { font-size: 1.15rem; padding-left: 1rem; }
+    }
+
+    .about-quote {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      line-height: 1.4;
+      color: var(--plum);
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--terracotta);
+    }
+
+    /* Land */
+    .land-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 760px) {
+      .land-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .map-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 2rem;
+      transform: rotate(-1deg);
+      box-shadow: 0 10px 40px rgba(44, 31, 36, 0.08);
+    }
+
+    @media (max-width: 760px) {
+      .map-card { transform: none; padding: 1.5rem; }
+    }
+
+    .map-card h3 { margin-bottom: 0.3rem; }
+    .map-card p { color: var(--ink-soft); margin-bottom: 1.2rem; }
+    .map-card .postcode {
+      font-family: 'Fraunces', serif;
+      font-size: 1.6rem;
+      color: var(--ink);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    /* Tiers */
+    .tiers {
+      background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+      max-width: none;
+      padding: 6rem 2rem;
+    }
+
+    .tiers-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tier-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 760px) {
+      .tier-grid { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+    .tier {
+      background: var(--paper);
+      border: 1.5px solid rgba(44, 31, 36, 0.1);
+      border-radius: 18px;
+      padding: 2rem 1.8rem;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .tier:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(44, 31, 36, 0.1);
+    }
+
+    .tier:nth-child(1) { transform: rotate(-1deg); }
+    .tier:nth-child(2) { transform: rotate(0.5deg); border-color: var(--terracotta); }
+    .tier:nth-child(3) { transform: rotate(-0.5deg); }
+
+    .tier:nth-child(1):hover,
+    .tier:nth-child(2):hover,
+    .tier:nth-child(3):hover { transform: translateY(-4px) rotate(0); }
+
+    /* Don't tilt tiers on mobile — looks weird stacked */
+    @media (max-width: 760px) {
+      .tier:nth-child(1),
+      .tier:nth-child(2),
+      .tier:nth-child(3) { transform: none; }
+    }
+
+    .tier-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tier-name {
+      font-family: 'Fraunces', serif;
+      font-size: 1.3rem;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    .tier-price {
+      font-family: 'Fraunces', serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--terracotta);
+      letter-spacing: -0.02em;
+    }
+
+    .tier-price-sub { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1rem; }
+
+    .tier-desc { color: var(--ink-soft); font-size: 0.95rem; }
+
+    .tiers-note {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--paper);
+      border-radius: 12px;
+      border: 1px dashed rgba(44, 31, 36, 0.2);
+      text-align: center;
+      color: var(--ink-soft);
+    }
+
+    .tiers-note strong { color: var(--ink); }
+
+    /* Bring */
+    .bring-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 0.5rem 2rem;
+      margin-top: 1.5rem;
+      list-style: none;
+    }
+
+    .bring-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px dashed rgba(44, 31, 36, 0.15);
+      color: var(--ink-soft);
+      font-size: 0.98rem;
+    }
+
+    .bring-list li::before {
+      content: "✦";
+      color: var(--terracotta);
+      margin-right: 0.6rem;
+      font-size: 0.85em;
+    }
+
+    /* Carousel */
+    .gallery {
+      max-width: 1200px;
+    }
+
+    .carousel {
+      position: relative;
+      margin-top: 2rem;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--ink);
+    }
+
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      scroll-snap-align: center;
+      aspect-ratio: 16 / 10;
+      position: relative;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .carousel-slide img,
+    .carousel-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(247, 238, 221, 0.92);
+      color: var(--ink);
+      border: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 3;
+      font-family: 'Fraunces', serif;
+      line-height: 1;
+      padding: 0 0 4px 0;
+    }
+    .carousel-btn:hover {
+      background: var(--paper);
+      transform: translateY(-50%) scale(1.08);
+    }
+    .carousel-btn.prev { left: 1rem; }
+    .carousel-btn.next { right: 1rem; }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(44, 31, 36, 0.2);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active {
+      background: var(--terracotta);
+      transform: scale(1.3);
+    }
+    .carousel-dot:hover { background: var(--terracotta); }
+
+    @media (max-width: 760px) {
+      .carousel-btn { width: 36px; height: 36px; font-size: 1.2rem; }
+      .carousel-btn.prev { left: 0.5rem; }
+      .carousel-btn.next { right: 0.5rem; }
+      .carousel-slide { aspect-ratio: 4 / 5; }
+    }
+
+    /* Get involved */
+    .involve {
+      background: var(--ink);
+      color: var(--cream);
+      max-width: none;
+      padding: 6rem 2rem;
+      text-align: center;
+    }
+
+    .involve-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .involve h2 { color: var(--cream); margin: 0 auto 1.5rem; }
+    .involve .lead { color: rgba(247, 238, 221, 0.85); margin: 0 auto 2rem; }
+    .involve .lead::first-letter { color: var(--rose); }
+
+    .involve .btn-primary {
+      background: var(--terracotta);
+      color: var(--paper);
+    }
+    .involve .btn-primary:hover { background: var(--rose); color: var(--ink); }
+
+    /* Footer */
+    footer {
+      padding: 3rem 2rem 2rem;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 0.92rem;
+      background: var(--cream-deep);
+    }
+
+    footer .moon {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    footer a { color: var(--terracotta-deep); }
+
+    /* Tiny moon-cow logo */
+    .logo-svg { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <a href="#top" class="brand">Mooncow Fest</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#land">The land</a></li>
+        <li><a href="#tiers">Tiers</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li class="nav-cta-item"><a href="#involve" class="nav-cta">Join in</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Mooncow <span class="amp">Fest!</span></h1>
+        <p class="hero-tagline">Three days in a field on the South Downs. Built by everyone who turns up.</p>
+        <div class="hero-meta">
+          <div>
+            <strong>5 — 7 June 2026</strong>
+            <span>Fri–Sun, two nights</span>
+          </div>
+          <div>
+            <strong>The South Downs</strong>
+            <span>East Sussex, UK</span>
+          </div>
+        </div>
+        <div class="hero-buttons">
+          <a href="#involve" class="btn btn-primary">Join the herd</a>
+          <a href="#about" class="btn btn-secondary">What is this?</a>
+        </div>
+      </div>
+      <div class="hero-poster">
+        <div class="hero-poster-fallback">Drop poster.jpg into the<br>/photos folder to see it here</div>
+        <img src="photos/poster.jpeg" alt="Mooncow Fest 2026 poster — neon lights with grass-filled letters reading MOON COW FEST" onerror="this.style.display='none'" />
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div>
+          <h2>A weekend in a field, made by everyone who turns up.</h2>
+          <p class="lead">Mooncow Fest is an exciting gathering of around 80–200 friends, friends-of-friends, and lovely strangers — pitched on a working farm in the South Downs. There are no headliners, no wristbands, no sponsors. Just people, fields, fire, music, food cooked together, and the occasional cow.</p>
+        </div>
+        <div>
+          <p class="about-quote">The event is co-created by the participants. Bring yourself, bring your ideas, your music, and anything you'd like to share — a workshop, a talk, a DJ set, food, anything!</p>
+          <p style="margin-top: 1.5rem; color: var(--ink-soft);">We've been doing this since 2020. Each year is a little different. The shape comes from the people who show up.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <span class="section-label">~ scenes from past years ~</span>
+      <h2>What it looks like.</h2>
+      <p class="lead" style="font-size: 1.1rem;">Cows, fields, fire, dancing, art, and the occasional naked trampoline. Swipe or tap the arrows.</p>
+
+      <div class="carousel">
+        <button class="carousel-btn prev" aria-label="Previous slide" type="button">‹</button>
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><img src="photos/01-dancing.jpg" alt="Dancing" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/02-art.jpg" alt="Art" loading="lazy" /></div>
+          <div class="carousel-slide"><video src="photos/03-dance.mp4" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="carousel-slide"><video src="photos/04-dance.mp4" muted loop playsinline preload="metadata" controls></video></div>
+          <div class="carousel-slide"><img src="photos/05-cow-walk.jpg" alt="Cow walk" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/06-scene.jpg" alt="Festival scene" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/07-cows.jpg" alt="Cows" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/08-fire.jpg" alt="Fire" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/09-art-2.jpg" alt="Art" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/10-space.jpg" alt="Space" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/11-space-night.jpg" alt="Space at night" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/12-food.jpg" alt="Food" loading="lazy" /></div>
+          <div class="carousel-slide"><img src="photos/13-mooncows.jpg" alt="Mooncows" loading="lazy" /></div>
+          <div class="carousel-slide"><video src="photos/14-ivan-play.mp4" muted loop playsinline preload="metadata" controls></video></div>
+        </div>
+        <button class="carousel-btn next" aria-label="Next slide" type="button">›</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </section>
+
+    <section id="land">
+      <span class="section-label">~ the land ~</span>
+      <h2>Rolling hills, a quiet farm, big skies.</h2>
+      <div class="land-grid" style="margin-top: 2.5rem;">
+        <div>
+          <p class="lead" style="font-size: 1.1rem;">We pitch up at <strong>Great Danegate Farm</strong>, near Eridge Green in East Sussex — about an hour by train from London Bridge to Tunbridge Wells, then a short hop. There's space to camp, a kitchen tent, a fire, a dance tent, and a lot of green.</p>
+          <p style="margin-top: 1.5rem; color: var(--ink-soft);">Getting there by car, public transport, or carpool. We'll coordinate lifts in the run-up — drop your name in the spreadsheet if you'd like a seat, or have one to offer.</p>
+        </div>
+        <div class="map-card">
+          <h3>Great Danegate Farm</h3>
+          <p>Eridge Green, Rotherfield<br>East Sussex</p>
+          <div class="postcode">TN3 9HU</div>
+          <p style="margin-top: 1.2rem;">
+            <a href="https://maps.app.goo.gl/FiyfNERAW64Pfc6m8" class="btn btn-secondary" style="font-size: 0.9rem; padding: 0.6rem 1.2rem;" target="_blank" rel="noopener">Open in Google Maps ↗</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tiers" id="tiers">
+      <div class="tiers-inner">
+        <span class="section-label">~ how it's funded ~</span>
+        <h2>Three cow tiers. Pick what fits.</h2>
+        <p class="lead">Mooncow runs on what people pitch in. We don't profit — fees cover the land, food, equipment, and the bits and pieces that make a field into a festival. Choose the tier that sits right with your budget.</p>
+
+        <div class="tier-grid">
+          <div class="tier">
+            <div class="tier-emoji">🌱</div>
+            <div class="tier-name">Restricted budget</div>
+            <div class="tier-price">£75</div>
+            <div class="tier-price-sub">For tighter months</div>
+            <p class="tier-desc">No questions asked. Same festival, same welcome.</p>
+          </div>
+          <div class="tier">
+            <div class="tier-emoji">🐄</div>
+            <div class="tier-name">Base fee</div>
+            <div class="tier-price">£95</div>
+            <div class="tier-price-sub">The standard contribution</div>
+            <p class="tier-desc">Covers your share of the weekend.</p>
+          </div>
+          <div class="tier">
+            <div class="tier-emoji">🌝</div>
+            <div class="tier-name">Beyond-cow</div>
+            <div class="tier-price">£125</div>
+            <div class="tier-price-sub">If you can give a bit more</div>
+            <p class="tier-desc">Helps us keep the lower tier open for others.</p>
+          </div>
+        </div>
+
+        <div class="tiers-note">
+          <strong>One day, one night?</strong> £55. <br>
+          Bank details and payment info are shared once you've joined the herd.
+        </div>
+      </div>
+    </section>
+
+    <section id="bring">
+      <span class="section-label">~ pack list ~</span>
+      <h2>What to bring.</h2>
+      <p class="lead" style="font-size: 1.1rem;">A rough kit for a comfortable weekend. The full list (with shared kitchen kit and equipment sign-up) lives in the spreadsheet.</p>
+      <ul class="bring-list">
+        <li>Tent + sleeping bag (10°C-rated)</li>
+        <li>Sleeping mat for under your bag</li>
+        <li>Layers — it gets cold at night</li>
+        <li>Waterproof jacket</li>
+        <li>Hiking boots or wellies</li>
+        <li>Headtorch (better than a regular torch)</li>
+        <li>Water bottle + 5L spare</li>
+        <li>Cup, plate, cutlery</li>
+        <li>Towel + biodegradable shower gel</li>
+        <li>Swimwear</li>
+        <li>Toilet paper</li>
+        <li>Mosquito repellent</li>
+        <li>Charged power banks</li>
+        <li>Snacks to share</li>
+      </ul>
+    </section>
+
+    <section class="involve" id="involve">
+      <div class="involve-inner">
+        <span class="section-label" style="color: var(--rose);">~ join in ~</span>
+        <h2>Mooncow is built by everyone who comes.</h2>
+        <p class="lead">Add your name, sign up to bring a kettle or a wok, offer a workshop, drop in a DJ set, share a dish, or just say you're coming. Everything lives in one shared spreadsheet — that's how we organise.</p>
+        <a href="https://docs.google.com/spreadsheets/d/16zPT9-D0DYkgUZ8ITXuOPCr7fpj_F8mRWJLlNAQEWqs/edit" class="btn btn-primary" target="_blank" rel="noopener">Open the herd spreadsheet ↗</a>
+        <p style="margin-top: 2rem; font-size: 0.95rem; color: rgba(247, 238, 221, 0.65);">New here? Reach out and we'll point you to the WhatsApp group and bank details.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    (function () {
+      const track = document.getElementById('carouselTrack');
+      const dotsContainer = document.getElementById('carouselDots');
+      if (!track || !dotsContainer) return;
+      const slides = Array.from(track.children);
+      const prevBtn = document.querySelector('.carousel-btn.prev');
+      const nextBtn = document.querySelector('.carousel-btn.next');
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.type = 'button';
+        dot.addEventListener('click', () => scrollToSlide(i));
+        dotsContainer.appendChild(dot);
+      });
+      const dots = Array.from(dotsContainer.children);
+
+      function scrollToSlide(i) {
+        const target = slides[i];
+        if (!target) return;
+        track.scrollTo({ left: target.offsetLeft, behavior: 'smooth' });
+      }
+
+      function currentIndex() {
+        const w = track.clientWidth;
+        return Math.round(track.scrollLeft / w);
+      }
+
+      function syncVideos(activeIdx) {
+        slides.forEach((slide, i) => {
+          const v = slide.querySelector('video');
+          if (!v) return;
+          if (i === activeIdx) {
+            // Play the active video; browsers allow muted autoplay
+            const playPromise = v.play();
+            if (playPromise && playPromise.catch) playPromise.catch(() => {});
+          } else {
+            v.pause();
+            // Reset non-active videos so they always start from the beginning
+            try { v.currentTime = 0; } catch (e) {}
+          }
+        });
+      }
+
+      function updateActive() {
+        const idx = currentIndex();
+        dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        syncVideos(idx);
+      }
+
+      // Only auto-play videos when the carousel is actually visible on screen.
+      // This avoids hammering bandwidth before the user scrolls down to it.
+      let carouselVisible = false;
+      const carouselEl = track.closest('.carousel');
+      if (carouselEl && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            carouselVisible = e.isIntersecting;
+            if (!carouselVisible) {
+              slides.forEach((s) => {
+                const v = s.querySelector('video');
+                if (v) v.pause();
+              });
+            } else {
+              syncVideos(currentIndex());
+            }
+          });
+        }, { threshold: 0.25 });
+        io.observe(carouselEl);
+      } else {
+        carouselVisible = true;
+      }
+
+      let scrollTimer;
+      track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(updateActive, 80);
+      });
+
+      prevBtn && prevBtn.addEventListener('click', () => {
+        const i = currentIndex();
+        scrollToSlide(i === 0 ? slides.length - 1 : i - 1);
+      });
+      nextBtn && nextBtn.addEventListener('click', () => {
+        const i = currentIndex();
+        scrollToSlide(i === slides.length - 1 ? 0 : i + 1);
+      });
+    })();
+  </script>
+
+  <footer>
+    <div class="moon">🌝</div>
+    <p>Mooncow Fest 2026 — 5–7 June, South Downs.</p>
+    <p style="margin-top: 0.5rem;">Made by the herd, for the herd. <a href="https://docs.google.com/spreadsheets/d/16zPT9-D0DYkgUZ8ITXuOPCr7fpj_F8mRWJLlNAQEWqs/edit" target="_blank" rel="noopener">Spreadsheet</a></p>
+  </footer>
+
+</body>
+</html>
