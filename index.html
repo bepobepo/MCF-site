@@ -728,6 +728,25 @@
     }
     .involve .btn-primary:hover { background: var(--rose); color: var(--ink); }
 
+    .involve .btn-secondary {
+      color: var(--paper);
+      border: 1.5px solid rgba(247, 238, 221, 0.45);
+      background: transparent;
+    }
+    .involve .btn-secondary:hover {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--paper);
+    }
+
+    .involve-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
     /* Footer */
     footer {
       padding: 3rem 2rem 2rem;
@@ -795,7 +814,7 @@
       <div class="about-inner">
         <div>
           <h2>A weekend in a field, co-created.</h2>
-          <p class="lead">Mooncow Fest is a communal festival (gathering?) of around 80–150 humans (cows) pitched on a working farm in East Sussex. There are no headliners, no wristbands, no sponsors. Just people, fields, fire, music, food cooked together, and the occasional cow.</p>
+          <p class="lead">Mooncow Fest is a communal festival (gathering?) of around 80–150 friends, friends-of-friends, and lovely strangers — pitched on a working farm in East Sussex. There are no headliners, no wristbands, no sponsors. Just people, fields, fire, music, food cooked together, and the occasional cow.</p>
         </div>
         <div>
           <p class="about-quote">The event is co-created by the participants. Bring yourself, bring your ideas, your music, and anything you'd like to share — a workshop, a talk, a DJ set, food, anything!</p>
@@ -835,7 +854,7 @@
     <section id="music">
       <span class="section-label">~ the music ~</span>
       <h2>Who's playing? TBD.</h2>
-      <p class="lead">Mooncow doesn't book headliners — the lineup comes from whoever brings their decks, their tracks, or their voice. The 2026 schedule is still being written. Want to play? Drop yourself in the <a href="https://docs.google.com/spreadsheets/d/16zPT9-D0DYkgUZ8ITXuOPCr7fpj_F8mRWJLlNAQEWqs/edit" target="_blank" rel="noopener" style="color: var(--terracotta-deep);">spreadsheet</a> under "DJs &amp; Music".</p>
+      <p class="lead">Mooncow doesn't book headliners — the lineup comes from whoever brings their decks, their tracks, or their voice. The 2026 schedule is still being written. Want to play? Mention it on the sign-up form and we'll get you a slot.</p>
       <p style="margin-top: 1.5rem; color: var(--ink-soft);">In the meantime, here's a taste of last year's sets — straight from the herd:</p>
       <div class="soundcloud-embed">
         <iframe
@@ -857,7 +876,7 @@
       <div class="land-grid" style="margin-top: 2.5rem;">
         <div>
           <p class="lead" style="font-size: 1.1rem;">We pitch up at <strong>Great Danegate Farm</strong>, near Eridge Green in East Sussex — about an hour by train from London Bridge to Tunbridge Wells, then a short hop. There's space to camp, a kitchen tent, a fire, a dance tent, and a lot of green.</p>
-          <p style="margin-top: 1.5rem; color: var(--ink-soft);">Getting there by car, public transport, or carpool. We'll coordinate lifts in the run-up — drop your name in the spreadsheet if you'd like a seat, or have one to offer.</p>
+          <p style="margin-top: 1.5rem; color: var(--ink-soft);">Getting there by car, public transport, or carpool. We'll coordinate lifts in the run-up — let us know on the sign-up form if you'd like a seat, or have one to offer.</p>
         </div>
         <div class="map-card">
           <h3>Great Danegate Farm</h3>
@@ -910,7 +929,7 @@
     <section id="bring">
       <span class="section-label">~ pack list ~</span>
       <h2>What to bring.</h2>
-      <p class="lead" style="font-size: 1.1rem;">A rough kit for a comfortable weekend. The full list (with shared kitchen kit and equipment sign-up) lives in the spreadsheet.</p>
+      <p class="lead" style="font-size: 1.1rem;">A rough kit for a comfortable weekend. Once you've signed up, we'll share the full list and the shared kitchen / equipment sign-up.</p>
       <ul class="bring-list">
         <li>Tent + sleeping bag (10°C-rated)</li>
         <li>Sleeping mat for under your bag</li>
@@ -932,10 +951,11 @@
     <section class="involve" id="involve">
       <div class="involve-inner">
         <span class="section-label" style="color: var(--rose);">~ join in ~</span>
-        <h2>Mooncow is built by everyone who comes.</h2>
-        <p class="lead">Add your name, sign up to bring a kettle or a wok, offer a workshop, drop in a DJ set, share a dish, or just say you're coming. Everything lives in one shared spreadsheet — that's how we organise.</p>
-        <a href="https://docs.google.com/spreadsheets/d/16zPT9-D0DYkgUZ8ITXuOPCr7fpj_F8mRWJLlNAQEWqs/edit" class="btn btn-primary" target="_blank" rel="noopener">Open the herd spreadsheet ↗</a>
-        <p style="margin-top: 2rem; font-size: 0.95rem; color: rgba(247, 238, 221, 0.65);">New here? Reach out and we'll point you to the WhatsApp group and bank details.</p>
+        <h2>Join us! Come dance or get involved.</h2>
+        <p class="lead">Fill in the sign-up form to let us know you're coming. We'll take it from there — bank details, the WhatsApp group, lifts, and everything else.</p>
+        <div class="involve-actions">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSd69E0QQ2p3h2pvLZ8PrGn2_myqukXd_ZfObHMk71Am43xjNg/viewform" class="btn btn-primary" target="_blank" rel="noopener">Fill in the sign-up form ↗</a>
+        </div>
       </div>
     </section>
 
@@ -1037,7 +1057,7 @@
   <footer>
     <div class="moon">🌝</div>
     <p>Mooncow Fest 2026 — 5–7 June, South Downs.</p>
-    <p style="margin-top: 0.5rem;">Made by the herd, for the herd. <a href="https://docs.google.com/spreadsheets/d/16zPT9-D0DYkgUZ8ITXuOPCr7fpj_F8mRWJLlNAQEWqs/edit" target="_blank" rel="noopener">Spreadsheet</a></p>
+    <p style="margin-top: 0.5rem;">Made by the herd, for the herd.</p>
   </footer>
 
 </body>
