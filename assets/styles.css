@@ -1552,8 +1552,8 @@ a {
 }
 
 .chip-row .emoji-img {
-  width: 1.35em;
-  height: 1.35em;
+  width: 1.6em;
+  height: 1.6em;
 }
 
 :root.night .chip-row span {
@@ -1931,8 +1931,8 @@ a {
 }
 
 .pack-section .pack-badge .emoji-img {
-  width: 1.55em;
-  height: 1.55em;
+  width: 1.9em;
+  height: 1.9em;
 }
 
 :root.night .pack-badge {
@@ -2076,8 +2076,8 @@ a {
 }
 
 .question-link .emoji-img {
-  width: 1.35em;
-  height: 1.35em;
+  width: 1.65em;
+  height: 1.65em;
 }
 
 .disco-scene {
