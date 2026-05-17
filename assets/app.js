@@ -196,7 +196,6 @@
     mobileNav.classList.remove("is-open");
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Open menu");
-    menuToggle.textContent = "☰";
   }
 
   function setupMobileNav() {
@@ -206,7 +205,6 @@
       mobileNav.classList.toggle("is-open", open);
       menuToggle.setAttribute("aria-expanded", String(open));
       menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      menuToggle.textContent = open ? "✕" : "☰";
     });
     mobileNav.addEventListener("click", (event) => {
       if (event.target instanceof HTMLAnchorElement) closeMobileNav();
