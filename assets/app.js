@@ -6,7 +6,6 @@
   const mobileNav = document.querySelector("[data-mobile-nav]");
   const discoMoon = document.querySelector("[data-disco-moon]");
   const stars = document.querySelector("[data-stars]");
-  const waveform = document.querySelector("[data-waveform]");
   const scene = document.querySelector("[data-disco-scene]");
   const emojiSources = {
     backpack: "assets/emoji/backpack.png",
@@ -42,8 +41,24 @@
     return img;
   }
 
+  function readStoredMode() {
+    try {
+      return localStorage.getItem("mooncow-mode");
+    } catch {
+      return null;
+    }
+  }
+
+  function writeStoredMode(mode) {
+    try {
+      localStorage.setItem("mooncow-mode", mode);
+    } catch {
+      // Browsing contexts with blocked storage should still be able to switch modes.
+    }
+  }
+
   function preferredMode() {
-    const stored = localStorage.getItem("mooncow-mode");
+    const stored = readStoredMode();
     if (stored === "day" || stored === "night") return stored;
     return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "night" : "day";
   }
@@ -107,39 +122,20 @@
     stars.dataset.ready = "true";
     for (let i = 0; i < 40; i += 1) {
       const star = document.createElement("span");
+      let top = (i * 73) % 55 + 2;
+      let left = (i * 157) % 96 + 1;
+      if (left < 58 && top > 32 && top < 54) {
+        top -= 12;
+        left += 30;
+      }
       star.className = "star";
       star.textContent = "✦";
-      star.style.top = `${(i * 73) % 55 + 2}%`;
-      star.style.left = `${(i * 157) % 96 + 1}%`;
+      star.style.top = `${top}%`;
+      star.style.left = `${left}%`;
       star.style.fontSize = `${6 + (i % 4) * 3}px`;
       star.style.animationDelay = `${(i * 0.13) % 2}s`;
       stars.appendChild(star);
     }
-  }
-
-  function buildWaveform() {
-    if (!waveform || waveform.dataset.ready) return;
-    waveform.dataset.ready = "true";
-    const progress = 64;
-    for (let i = 0; i < 100; i += 1) {
-      const bar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-      const h = 7 + Math.abs(Math.sin(i * 0.42 + 0.8) * 18) + Math.abs(Math.sin(i * 0.17) * 9);
-      bar.setAttribute("x", String(i * 4));
-      bar.setAttribute("y", String(25 - h / 2));
-      bar.setAttribute("width", "2");
-      bar.setAttribute("height", String(h));
-      bar.setAttribute("rx", "1");
-      bar.setAttribute("class", i < progress ? "waveform-bar waveform-bar--played" : "waveform-bar waveform-bar--upcoming");
-      bar.style.animationDelay = `${i * -0.045}s`;
-      waveform.appendChild(bar);
-    }
-    const playhead = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    playhead.setAttribute("class", "waveform-playhead");
-    playhead.setAttribute("x1", "0");
-    playhead.setAttribute("x2", "0");
-    playhead.setAttribute("y1", "5");
-    playhead.setAttribute("y2", "45");
-    waveform.appendChild(playhead);
   }
 
   function renderScene() {
@@ -232,7 +228,6 @@
 
   buildDiscoMoon();
   buildStars();
-  buildWaveform();
   setupMobileNav();
   setupMediaObserver();
   setMode(preferredMode());
@@ -240,7 +235,7 @@
   if (modeToggle) {
     modeToggle.addEventListener("click", () => {
       const next = root.classList.contains("night") ? "day" : "night";
-      localStorage.setItem("mooncow-mode", next);
+      writeStoredMode(next);
       setMode(next);
     });
   }
