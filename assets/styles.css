@@ -331,6 +331,9 @@ a {
 
 .hero {
   position: relative;
+  --hero-content-max: 1360px;
+  --hero-content-pad: 32px;
+  --hero-content-edge: max(var(--hero-content-pad), calc((100vw - var(--hero-content-max)) / 2 + var(--hero-content-pad)));
   min-height: 720px;
   overflow: hidden;
   isolation: isolate;
@@ -355,7 +358,7 @@ a {
 .disco-moon {
   position: absolute;
   top: 80px;
-  right: clamp(40px, 9.5vw, 120px);
+  right: var(--hero-content-edge);
   width: 160px;
   height: 160px;
   border-radius: 50%;
@@ -528,7 +531,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
-  --ray-x: calc(100% - clamp(40px, 9.5vw, 120px) - 80px);
+  --ray-x: calc(100% - var(--hero-content-edge) - 80px);
   --ray-y: 160px;
   opacity: 0;
   overflow: hidden;
@@ -575,8 +578,10 @@ a {
 .hero-copy {
   position: relative;
   z-index: 5;
-  max-width: 1060px;
-  padding: 56px 64px 60px;
+  width: min(100%, var(--hero-content-max));
+  max-width: var(--hero-content-max);
+  margin: 0 auto;
+  padding: 56px var(--hero-content-pad) 60px;
 }
 
 .eyebrow {
@@ -604,6 +609,10 @@ a {
   letter-spacing: -.025em;
   line-height: .92;
   text-wrap: balance;
+}
+
+.hero h1 span {
+  display: block;
 }
 
 .hero h1 span:last-child {
@@ -845,8 +854,8 @@ a {
 }
 
 .music-note-a {
-  bottom: 126px;
-  left: 22%;
+  bottom: 82px;
+  left: 36%;
   font-size: 20px;
   animation-delay: .5s;
   --field-enter-delay: .4s;
