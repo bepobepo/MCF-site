@@ -401,7 +401,16 @@ a {
   inset: 0;
   z-index: 1;
   overflow: hidden;
+  overflow: clip;
   border-radius: 50%;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0 70%, transparent 70.75%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 0 70%, transparent 70.75%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
   background:
     radial-gradient(circle at 31% 22%, rgba(255, 255, 255, .88) 0 8%, transparent 22%),
     radial-gradient(circle at 64% 69%, rgba(122, 82, 26, .18) 0 8%, transparent 18%),
