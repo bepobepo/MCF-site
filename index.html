@@ -5,10 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mooncow Fest 2026 — 5–7 June, East Sussex</title>
   <meta name="description" content="A small, handmade gathering on the South Downs. 5–7 June 2026." />
+  <meta name="theme-color" content="#fdf3d3" data-mode-theme-color>
+  <meta name="color-scheme" content="light dark">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" data-ios-status-bar-style>
   <link rel="icon" href="assets/favicon.png?v=apple-emoji-safe-2" type="image/png">
   <script>
     (function () {
       var mode = "day";
+      var colors = { day: "#fdf3d3", night: "#160b34" };
       try {
         var stored = localStorage.getItem("mooncow-mode");
         if (stored === "day" || stored === "night") {
@@ -21,6 +25,11 @@
       }
       document.documentElement.classList.remove("day", "night");
       document.documentElement.classList.add(mode);
+      document.documentElement.style.backgroundColor = colors[mode];
+      var themeMeta = document.querySelector('meta[name="theme-color"]');
+      if (themeMeta) themeMeta.setAttribute("content", colors[mode]);
+      var iosMeta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+      if (iosMeta) iosMeta.setAttribute("content", mode === "night" ? "black-translucent" : "default");
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,7 +50,7 @@
     <div class="header-inner">
       <div class="brand-group">
         <button class="mode-toggle" type="button" aria-label="Switch to night" aria-pressed="false" data-mode-toggle>
-          <span class="mode-toggle__knob" aria-hidden="true"><img class="emoji-img" src="assets/emoji/sun.png?v=apple-emoji-safe-2" alt=""></span>
+          <span class="mode-toggle__knob" aria-hidden="true"><img class="emoji-img" src="assets/emoji/webp/sun.webp?v=apple-emoji-safe-2" alt=""></span>
         </button>
         <a href="#top" class="wordmark">Mooncow&nbsp;Fest</a>
       </div>
@@ -99,25 +108,25 @@
       </div>
 
       <div class="field-cast" aria-hidden="true">
-        <span class="actor tree tree-left mc-bob"><img class="emoji-img" src="assets/emoji/tree.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor tent tent-left"><img class="emoji-img" src="assets/emoji/tent.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor camp"><img class="emoji-img" src="assets/emoji/camping.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor flower flower-left"><img class="emoji-img" src="assets/emoji/blossom.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor fire mc-flicker"><img class="emoji-img" src="assets/emoji/fire.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor dancer dancer-left mc-shimmy"><img class="emoji-img" src="assets/emoji/man_dancing.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor dancer dancer-right mc-shimmy"><img class="emoji-img" src="assets/emoji/woman_dancing.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra disco-disc mc-spin"><img class="emoji-img" src="assets/emoji/cd.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra headphones mc-bob"><img class="emoji-img" src="assets/emoji/headphones.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra field-trumpet mc-drift"><img class="emoji-img" src="assets/emoji/trumpet.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra field-banjo mc-drift"><img class="emoji-img" src="assets/emoji/banjo.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra music-note-a mc-drift"><img class="emoji-img" src="assets/emoji/musical_notes.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra music-note-b mc-drift"><img class="emoji-img" src="assets/emoji/musical_note.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor night-extra tiny-disco mc-spin"><img class="emoji-img" src="assets/emoji/disco_ball.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor cow cow-left"><img class="emoji-img" src="assets/emoji/cow.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor cow cow-right"><img class="emoji-img" src="assets/emoji/cow.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor tree tree-right mc-bob"><img class="emoji-img" src="assets/emoji/tree.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor tent tent-right"><img class="emoji-img" src="assets/emoji/tent.png?v=apple-emoji-safe-2" alt=""></span>
-        <span class="actor flower flower-right"><img class="emoji-img" src="assets/emoji/cherry_blossom.png?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor tree tree-left mc-bob"><img class="emoji-img" src="assets/emoji/webp/tree.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor tent tent-left"><img class="emoji-img" src="assets/emoji/webp/tent.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor camp"><img class="emoji-img" src="assets/emoji/webp/camping.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor flower flower-left"><img class="emoji-img" src="assets/emoji/webp/blossom.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor fire mc-flicker"><img class="emoji-img" src="assets/emoji/webp/fire.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor dancer dancer-left mc-shimmy"><img class="emoji-img" src="assets/emoji/webp/man_dancing.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor dancer dancer-right mc-shimmy"><img class="emoji-img" src="assets/emoji/webp/woman_dancing.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra disco-disc mc-spin"><img class="emoji-img" src="assets/emoji/webp/cd.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra headphones mc-bob"><img class="emoji-img" src="assets/emoji/webp/headphones.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra field-trumpet mc-drift"><img class="emoji-img" src="assets/emoji/webp/trumpet.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra field-banjo mc-drift"><img class="emoji-img" src="assets/emoji/webp/banjo.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra music-note-a mc-drift"><img class="emoji-img" src="assets/emoji/webp/musical_notes.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra music-note-b mc-drift"><img class="emoji-img" src="assets/emoji/webp/musical_note.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor night-extra tiny-disco mc-spin"><img class="emoji-img" src="assets/emoji/webp/disco_ball.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor cow cow-left"><img class="emoji-img" src="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor cow cow-right"><img class="emoji-img" src="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor tree tree-right mc-bob"><img class="emoji-img" src="assets/emoji/webp/tree.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor tent tent-right"><img class="emoji-img" src="assets/emoji/webp/tent.webp?v=apple-emoji-safe-2" alt=""></span>
+        <span class="actor flower flower-right"><img class="emoji-img" src="assets/emoji/webp/cherry_blossom.webp?v=apple-emoji-safe-2" alt=""></span>
       </div>
 
       <svg class="hills" viewBox="0 0 1280 220" preserveAspectRatio="none" aria-hidden="true">
@@ -139,10 +148,10 @@
         </div>
       </div>
       <div class="stat-grid" aria-label="Mooncow Fest facts">
-        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/cow.png?v=apple-emoji-safe-2" alt=""></span></span><strong>80–150</strong><span>humans in the field</span></div>
-        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/crescent_moon.png?v=apple-emoji-safe-2" alt=""></span></span><strong>2 nights</strong><span>Fri → Sun</span></div>
-        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/disco_ball.png?v=apple-emoji-safe-2" alt=""></span></span><strong>0</strong><span>headliners, wristbands, sponsors</span></div>
-        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/seedling.png?v=apple-emoji-safe-2" alt=""></span></span><strong>since 2020</strong><span>each year a little different</span></div>
+        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" alt=""></span></span><strong>80–150</strong><span>humans in the field</span></div>
+        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/webp/crescent_moon.webp?v=apple-emoji-safe-2" alt=""></span></span><strong>2 nights</strong><span>Fri → Sun</span></div>
+        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/webp/disco_ball.webp?v=apple-emoji-safe-2" alt=""></span></span><strong>0</strong><span>headliners, wristbands, sponsors</span></div>
+        <div class="stat-card"><span class="stat-card__icon" aria-hidden="true"><span><img class="emoji-img" src="assets/emoji/webp/seedling.webp?v=apple-emoji-safe-2" alt=""></span></span><strong>since 2020</strong><span>each year a little different</span></div>
       </div>
     </section>
 
@@ -156,42 +165,43 @@
       </div>
 
       <div class="polaroid-grid">
-        <figure class="polaroid"><img src="photos/optimized/01-dancing-960.webp" srcset="photos/optimized/01-dancing-480.webp 480w, photos/optimized/01-dancing-960.webp 960w, photos/optimized/01-dancing-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Dancing at Mooncow Fest" loading="lazy" decoding="async"><figcaption>Dancing</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/02-art-960.webp" srcset="photos/optimized/02-art-480.webp 480w, photos/optimized/02-art-960.webp 960w, photos/optimized/02-art-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Art at Mooncow Fest" loading="lazy" decoding="async"><figcaption>Art</figcaption></figure>
-        <figure class="polaroid"><video src="photos/03-dance.mp4" muted loop playsinline preload="metadata" controls></video><figcaption>Dance (clip)</figcaption></figure>
-        <figure class="polaroid"><video src="photos/04-dance.mp4" muted loop playsinline preload="metadata" controls></video><figcaption>Dance (clip)</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/05-cow-walk-960.webp" srcset="photos/optimized/05-cow-walk-480.webp 480w, photos/optimized/05-cow-walk-960.webp 960w, photos/optimized/05-cow-walk-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="A cow walk near the festival field" loading="lazy" decoding="async"><figcaption>Cow walk</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/06-scene-960.webp" srcset="photos/optimized/06-scene-480.webp 480w, photos/optimized/06-scene-960.webp 960w, photos/optimized/06-scene-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Festival scene in the field" loading="lazy" decoding="async"><figcaption>Festival scene</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/07-cows-960.webp" srcset="photos/optimized/07-cows-480.webp 480w, photos/optimized/07-cows-960.webp 960w, photos/optimized/07-cows-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Cows near Mooncow Fest" loading="lazy" decoding="async"><figcaption>Cows</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/08-fire-960.webp" srcset="photos/optimized/08-fire-480.webp 480w, photos/optimized/08-fire-960.webp 960w, photos/optimized/08-fire-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Fire at night" loading="lazy" decoding="async"><figcaption>Fire</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/09-art-2-960.webp" srcset="photos/optimized/09-art-2-480.webp 480w, photos/optimized/09-art-2-960.webp 960w, photos/optimized/09-art-2-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="More festival art" loading="lazy" decoding="async"><figcaption>Art</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/10-space-960.webp" srcset="photos/optimized/10-space-480.webp 480w, photos/optimized/10-space-960.webp 960w, photos/optimized/10-space-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="The festival space by day" loading="lazy" decoding="async"><figcaption>Space</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/11-space-night-960.webp" srcset="photos/optimized/11-space-night-480.webp 480w, photos/optimized/11-space-night-960.webp 960w, photos/optimized/11-space-night-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="The festival space at night" loading="lazy" decoding="async"><figcaption>Space at night</figcaption></figure>
-        <figure class="polaroid"><img src="photos/optimized/12-food-960.webp" srcset="photos/optimized/12-food-480.webp 480w, photos/optimized/12-food-960.webp 960w, photos/optimized/12-food-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Food shared at Mooncow Fest" loading="lazy" decoding="async"><figcaption>Food</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/01-dancing-720.webp" srcset="photos/optimized/01-dancing-480.webp 480w, photos/optimized/01-dancing-720.webp 720w, photos/optimized/01-dancing-960.webp 960w, photos/optimized/01-dancing-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Dancing at Mooncow Fest" loading="lazy" decoding="async"><figcaption>Dancing</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/02-art-720.webp" srcset="photos/optimized/02-art-480.webp 480w, photos/optimized/02-art-720.webp 720w, photos/optimized/02-art-960.webp 960w, photos/optimized/02-art-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Art at Mooncow Fest" loading="lazy" decoding="async"><figcaption>Art</figcaption></figure>
+        <figure class="polaroid"><video src="photos/optimized/03-dance-720.mp4" muted loop playsinline preload="metadata" controls></video><figcaption>Dance (clip)</figcaption></figure>
+        <figure class="polaroid"><video src="photos/optimized/04-dance-720.mp4" muted loop playsinline preload="metadata" controls></video><figcaption>Dance (clip)</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/05-cow-walk-720.webp" srcset="photos/optimized/05-cow-walk-480.webp 480w, photos/optimized/05-cow-walk-720.webp 720w, photos/optimized/05-cow-walk-960.webp 960w, photos/optimized/05-cow-walk-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="A cow walk near the festival field" loading="lazy" decoding="async"><figcaption>Cow walk</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/06-scene-720.webp" srcset="photos/optimized/06-scene-480.webp 480w, photos/optimized/06-scene-720.webp 720w, photos/optimized/06-scene-960.webp 960w, photos/optimized/06-scene-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Festival scene in the field" loading="lazy" decoding="async"><figcaption>Festival scene</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/07-cows-720.webp" srcset="photos/optimized/07-cows-480.webp 480w, photos/optimized/07-cows-720.webp 720w, photos/optimized/07-cows-960.webp 960w, photos/optimized/07-cows-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Cows near Mooncow Fest" loading="lazy" decoding="async"><figcaption>Cows</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/08-fire-720.webp" srcset="photos/optimized/08-fire-480.webp 480w, photos/optimized/08-fire-720.webp 720w, photos/optimized/08-fire-960.webp 960w, photos/optimized/08-fire-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Fire at night" loading="lazy" decoding="async"><figcaption>Fire</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/09-art-2-720.webp" srcset="photos/optimized/09-art-2-480.webp 480w, photos/optimized/09-art-2-720.webp 720w, photos/optimized/09-art-2-960.webp 960w, photos/optimized/09-art-2-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="More festival art" loading="lazy" decoding="async"><figcaption>Art</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/10-space-720.webp" srcset="photos/optimized/10-space-480.webp 480w, photos/optimized/10-space-720.webp 720w, photos/optimized/10-space-960.webp 960w, photos/optimized/10-space-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="The festival space by day" loading="lazy" decoding="async"><figcaption>Space</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/11-space-night-720.webp" srcset="photos/optimized/11-space-night-480.webp 480w, photos/optimized/11-space-night-720.webp 720w, photos/optimized/11-space-night-960.webp 960w, photos/optimized/11-space-night-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="The festival space at night" loading="lazy" decoding="async"><figcaption>Space at night</figcaption></figure>
+        <figure class="polaroid"><img src="photos/optimized/12-food-720.webp" srcset="photos/optimized/12-food-480.webp 480w, photos/optimized/12-food-720.webp 720w, photos/optimized/12-food-960.webp 960w, photos/optimized/12-food-1440.webp 1440w" sizes="(max-width: 640px) 88vw, (max-width: 1060px) 30vw, 22vw" alt="Food shared at Mooncow Fest" loading="lazy" decoding="async"><figcaption>Food</figcaption></figure>
       </div>
 
       <div class="wide-media-grid">
-        <figure><img src="photos/optimized/13-mooncows-960.webp" srcset="photos/optimized/13-mooncows-480.webp 480w, photos/optimized/13-mooncows-960.webp 960w, photos/optimized/13-mooncows-1440.webp 1440w" sizes="(max-width: 760px) 92vw, 44vw" alt="Mooncows gathered together" loading="lazy" decoding="async"><figcaption>Mooncows</figcaption></figure>
-        <figure><video src="photos/14-ivan-play.mp4" muted loop playsinline preload="metadata" controls></video><figcaption>Ivan plays</figcaption></figure>
+        <figure><img src="photos/optimized/13-mooncows-960.webp" srcset="photos/optimized/13-mooncows-480.webp 480w, photos/optimized/13-mooncows-720.webp 720w, photos/optimized/13-mooncows-960.webp 960w, photos/optimized/13-mooncows-1440.webp 1440w" sizes="(max-width: 760px) 92vw, 44vw" alt="Mooncows gathered together" loading="lazy" decoding="async"><figcaption>Mooncows</figcaption></figure>
+        <figure><video src="photos/optimized/14-ivan-play-720.mp4" muted loop playsinline preload="metadata" controls></video><figcaption>Ivan plays</figcaption></figure>
       </div>
     </section>
 
     <section class="section music-section" id="music">
       <div class="music-inner">
-        <div class="disco-mark mc-spin" aria-hidden="true"><img class="emoji-img" src="assets/emoji/disco_ball.png?v=apple-emoji-safe-2" alt=""></div>
+        <div class="disco-mark mc-spin" aria-hidden="true"><img class="emoji-img" src="assets/emoji/webp/disco_ball.webp?v=apple-emoji-safe-2" alt=""></div>
         <p class="eyebrow">~ the music ~</p>
         <h2 class="display-heading">Who's playing?<br><em>TBD.</em></h2>
         <p>Mooncow doesn't book headliners — the lineup comes from whoever brings their decks, their tracks, or their voice. The 2026 schedule is still being written. Want to play? Mention it on the sign-up form and we'll get you a slot.</p>
         <p>In the meantime, here's a taste of last year's sets — straight from the herd:</p>
 
-        <div class="soundcloud-embed">
+        <div class="soundcloud-embed" data-soundcloud-embed>
           <iframe
             width="100%"
             height="560"
             scrolling="no"
             allow="autoplay"
             title="Mooncows &amp; Friends Nowhere 2024 — SoundCloud playlist"
-            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/apsara_music/sets/mooncows-friends-nowhere-2024&color=%23ff3ea6&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
+            loading="lazy"
+            data-src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/apsara_music/sets/mooncows-friends-nowhere-2024&color=%23ff3ea6&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=true"></iframe>
         </div>
       </div>
     </section>
@@ -204,11 +214,11 @@
           <p>We pitch up at <strong>Great Danegate Farm</strong>, near Eridge Green in East Sussex — about an hour by train from London Bridge to Tunbridge Wells, then a short hop. There's space to camp, a kitchen tent, a fire, a dance tent, and a lot of green.</p>
           <p>Getting there by car, public transport, or carpool. We'll coordinate lifts in the run-up — let us know on the sign-up form if you'd like a seat, or have one to offer.</p>
           <div class="chip-row" aria-label="Site features">
-            <span><img class="emoji-img" src="assets/emoji/camping.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"> camping</span>
-            <span><img class="emoji-img" src="assets/emoji/frying_pan.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"> kitchen tent</span>
-            <span><img class="emoji-img" src="assets/emoji/fire.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"> fire</span>
-            <span><img class="emoji-img" src="assets/emoji/cd.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"> dance tent</span>
-            <span><img class="emoji-img" src="assets/emoji/herb.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"> a lot of green</span>
+            <span><img class="emoji-img" src="assets/emoji/webp/camping.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"> camping</span>
+            <span><img class="emoji-img" src="assets/emoji/webp/frying_pan.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"> kitchen tent</span>
+            <span><img class="emoji-img" src="assets/emoji/webp/fire.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"> fire</span>
+            <span><img class="emoji-img" src="assets/emoji/webp/cd.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"> dance tent</span>
+            <span><img class="emoji-img" src="assets/emoji/webp/herb.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"> a lot of green</span>
           </div>
         </div>
 
@@ -223,7 +233,7 @@
               <path class="map-hill map-hill-bottom" d="M0,180 Q150,150 260,180 T400,160 L400,250 L0,250 Z" />
               <path class="map-path" d="M0,130 C100,110 200,160 300,130 S400,120 400,120" />
               <circle class="map-pin" cx="240" cy="125" r="14" />
-              <image href="assets/emoji/cow.png?v=apple-emoji-safe-2" x="231" y="116" width="18" height="18" />
+              <image href="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" x="231" y="116" width="18" height="18" />
               <text x="260" y="105" class="map-label">YOU ARE HERE</text>
             </svg>
           </div>
@@ -241,7 +251,7 @@
 
       <div class="tier-grid">
         <a class="tier-card" href="https://docs.google.com/forms/d/e/1FAIpQLSd69E0QQ2p3h2pvLZ8PrGn2_myqukXd_ZfObHMk71Am43xjNg/viewform" target="_blank" rel="noopener" aria-label="Choose the Restricted budget tier and open the signup form">
-          <div class="tier-icon mc-bob"><img class="emoji-img" src="assets/emoji/seedling.png?v=apple-emoji-safe-2" alt=""></div>
+          <div class="tier-icon mc-bob"><img class="emoji-img" src="assets/emoji/webp/seedling.webp?v=apple-emoji-safe-2" alt=""></div>
           <p class="eyebrow">For tighter months</p>
           <h3>Restricted budget</h3>
           <strong>£75</strong>
@@ -249,7 +259,7 @@
           <span class="tier-card__cta">Choose this tier ↗</span>
         </a>
         <a class="tier-card" href="https://docs.google.com/forms/d/e/1FAIpQLSd69E0QQ2p3h2pvLZ8PrGn2_myqukXd_ZfObHMk71Am43xjNg/viewform" target="_blank" rel="noopener" aria-label="Choose the Base fee tier and open the signup form">
-          <div class="tier-icon mc-bounce"><img class="emoji-img" src="assets/emoji/cow.png?v=apple-emoji-safe-2" alt=""></div>
+          <div class="tier-icon mc-bounce"><img class="emoji-img" src="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" alt=""></div>
           <p class="eyebrow">The standard contribution</p>
           <h3>Base fee</h3>
           <strong>£95</strong>
@@ -257,7 +267,7 @@
           <span class="tier-card__cta">Choose this tier ↗</span>
         </a>
         <a class="tier-card" href="https://docs.google.com/forms/d/e/1FAIpQLSd69E0QQ2p3h2pvLZ8PrGn2_myqukXd_ZfObHMk71Am43xjNg/viewform" target="_blank" rel="noopener" aria-label="Choose the Beyond-cow tier and open the signup form">
-          <div class="tier-icon mc-spin"><img class="emoji-img" src="assets/emoji/moon_face.png?v=apple-emoji-safe-2" alt=""></div>
+          <div class="tier-icon mc-spin"><img class="emoji-img" src="assets/emoji/webp/moon_face.webp?v=apple-emoji-safe-2" alt=""></div>
           <p class="eyebrow">If you can give a bit more</p>
           <h3>Beyond-cow</h3>
           <strong>£125</strong>
@@ -274,7 +284,7 @@
           <p class="eyebrow">~ pack list ~</p>
           <h2 class="display-heading">What to <em>bring.</em></h2>
           <p>A rough kit for a comfortable weekend. Once you've signed up, we'll share the full list and the shared kitchen / equipment sign-up.</p>
-          <p class="pack-badge"><img class="emoji-img" src="assets/emoji/backpack.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"> 14 items · &lt; 25kg</p>
+          <p class="pack-badge"><img class="emoji-img" src="assets/emoji/webp/backpack.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"> 14 items · &lt; 25kg</p>
         </div>
         <ol class="pack-list">
           <li><span>Tent + sleeping bag (10°C-rated)</span></li>
@@ -300,15 +310,15 @@
         <p class="eyebrow">~ join in ~</p>
         <h2 class="display-heading">Join us.<br><em>Come dance</em> or get involved.</h2>
         <p>Fill in the sign-up form to let us know you're coming. We'll take it from there — bank details, the WhatsApp group, lifts, and everything else.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd69E0QQ2p3h2pvLZ8PrGn2_myqukXd_ZfObHMk71Am43xjNg/viewform" class="join-button" target="_blank" rel="noopener"><span class="mc-bounce" aria-hidden="true"><img class="emoji-img" src="assets/emoji/cow.png?v=apple-emoji-safe-2" alt=""></span> Fill in the sign-up form ↗</a>
-        <p class="question-link">Got questions? <a href="mailto:theherd@moonco.ws">Moo at us here</a> <img class="emoji-img" src="assets/emoji/cow.png?v=apple-emoji-safe-2" alt="" aria-hidden="true"></p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd69E0QQ2p3h2pvLZ8PrGn2_myqukXd_ZfObHMk71Am43xjNg/viewform" class="join-button" target="_blank" rel="noopener"><span class="mc-bounce" aria-hidden="true"><img class="emoji-img" src="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" alt=""></span> Fill in the sign-up form ↗</a>
+        <p class="question-link">Got questions? <a href="mailto:theherd@moonco.ws">Moo at us here</a> <img class="emoji-img" src="assets/emoji/webp/cow.webp?v=apple-emoji-safe-2" alt="" aria-hidden="true"></p>
       </div>
       <div class="disco-scene" aria-hidden="true" data-disco-scene></div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="mc-bob" aria-hidden="true"><img class="emoji-img" src="assets/emoji/moon_face.png?v=apple-emoji-safe-2" alt=""></div>
+    <div class="mc-bob" aria-hidden="true"><img class="emoji-img" src="assets/emoji/webp/moon_face.webp?v=apple-emoji-safe-2" alt=""></div>
     <p>Mooncow Fest 2026 — 5–7 June, South Downs. Made by the herd, for the herd.</p>
   </footer>
 

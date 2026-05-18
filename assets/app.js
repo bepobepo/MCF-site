@@ -7,28 +7,32 @@
   const discoMoon = document.querySelector("[data-disco-moon]");
   const stars = document.querySelector("[data-stars]");
   const scene = document.querySelector("[data-disco-scene]");
+  const browserChromeColors = {
+    day: "#fdf3d3",
+    night: "#160b34"
+  };
   const emojiSources = {
-    backpack: "assets/emoji/backpack.png",
-    banjo: "assets/emoji/banjo.png",
-    blossom: "assets/emoji/blossom.png",
-    cherryBlossom: "assets/emoji/cherry_blossom.png",
-    cow: "assets/emoji/cow.png",
-    crescentMoon: "assets/emoji/crescent_moon.png",
-    discoBall: "assets/emoji/disco_ball.png",
-    fire: "assets/emoji/fire.png",
-    herb: "assets/emoji/herb.png",
-    headphones: "assets/emoji/headphones.png",
-    manDancing: "assets/emoji/man_dancing.png",
-    moonFace: "assets/emoji/moon_face.png",
-    musicalNote: "assets/emoji/musical_note.png",
-    musicalNotes: "assets/emoji/musical_notes.png",
-    seedling: "assets/emoji/seedling.png",
-    sparkles: "assets/emoji/sparkles.png",
-    sun: "assets/emoji/sun.png",
-    sunSymbol: "assets/emoji/sun_symbol.png",
-    sunflower: "assets/emoji/sunflower.png",
-    trumpet: "assets/emoji/trumpet.png",
-    womanDancing: "assets/emoji/woman_dancing.png"
+    backpack: "assets/emoji/webp/backpack.webp",
+    banjo: "assets/emoji/webp/banjo.webp",
+    blossom: "assets/emoji/webp/blossom.webp",
+    cherryBlossom: "assets/emoji/webp/cherry_blossom.webp",
+    cow: "assets/emoji/webp/cow.webp",
+    crescentMoon: "assets/emoji/webp/crescent_moon.webp",
+    discoBall: "assets/emoji/webp/disco_ball.webp",
+    fire: "assets/emoji/webp/fire.webp",
+    herb: "assets/emoji/webp/herb.webp",
+    headphones: "assets/emoji/webp/headphones.webp",
+    manDancing: "assets/emoji/webp/man_dancing.webp",
+    moonFace: "assets/emoji/webp/moon_face.webp",
+    musicalNote: "assets/emoji/webp/musical_note.webp",
+    musicalNotes: "assets/emoji/webp/musical_notes.webp",
+    seedling: "assets/emoji/webp/seedling.webp",
+    sparkles: "assets/emoji/webp/sparkles.webp",
+    sun: "assets/emoji/webp/sun.webp",
+    sunSymbol: "assets/emoji/webp/sun_symbol.webp",
+    sunflower: "assets/emoji/webp/sunflower.webp",
+    trumpet: "assets/emoji/webp/trumpet.webp",
+    womanDancing: "assets/emoji/webp/woman_dancing.webp"
   };
 
   function createEmojiImage(name) {
@@ -36,6 +40,7 @@
     img.className = "emoji-img";
     img.src = `${emojiSources[name]}?v=${emojiAssetVersion}`;
     img.alt = "";
+    img.loading = "lazy";
     img.decoding = "async";
     img.setAttribute("aria-hidden", "true");
     return img;
@@ -67,6 +72,7 @@
     const isNight = mode === "night";
     root.classList.toggle("night", isNight);
     root.classList.toggle("day", !isNight);
+    syncBrowserChrome(mode);
     if (modeToggle) {
       modeToggle.setAttribute("aria-label", isNight ? "Switch to day" : "Switch to night");
       modeToggle.setAttribute("aria-pressed", String(isNight));
@@ -74,6 +80,20 @@
       if (knob) knob.replaceChildren(createEmojiImage(isNight ? "moonFace" : "sun"));
     }
     renderScene();
+  }
+
+  function syncBrowserChrome(mode) {
+    const color = browserChromeColors[mode] || browserChromeColors.day;
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const iosMeta = document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]');
+    root.style.backgroundColor = color;
+    if (document.body) document.body.style.backgroundColor = color;
+    if (themeMeta) themeMeta.setAttribute("content", color);
+    if (iosMeta) iosMeta.setAttribute("content", mode === "night" ? "black-translucent" : "default");
+
+    window.setTimeout(() => {
+      if (themeMeta) themeMeta.setAttribute("content", color);
+    }, 80);
   }
 
   function buildDiscoMoon() {
@@ -345,10 +365,37 @@
     videos.forEach((video) => observer.observe(video));
   }
 
+  function setupSoundcloudEmbed() {
+    const embed = document.querySelector("[data-soundcloud-embed]");
+    const iframe = embed && embed.querySelector("iframe[data-src]");
+    if (!(iframe instanceof HTMLIFrameElement)) return;
+
+    const loadEmbed = () => {
+      if (!iframe.dataset.src) return;
+      iframe.src = iframe.dataset.src;
+      iframe.removeAttribute("data-src");
+      embed.classList.add("is-loaded");
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      window.addEventListener("load", loadEmbed, { once: true });
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      loadEmbed();
+      observer.disconnect();
+    }, { rootMargin: "700px 0px" });
+
+    observer.observe(embed);
+  }
+
   buildDiscoMoon();
   buildStars();
   setupMobileNav();
   setupMediaObserver();
+  setupSoundcloudEmbed();
   setMode(preferredMode());
 
   if (modeToggle) {
