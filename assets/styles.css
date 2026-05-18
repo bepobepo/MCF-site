@@ -327,35 +327,42 @@ a {
   line-height: 0;
 }
 
-.menu-toggle::before,
-.menu-toggle::after {
-  content: "";
+.menu-toggle__bar {
   position: absolute;
-  top: 50%;
   left: 50%;
   width: 14px;
   height: 2px;
   border-radius: 999px;
   background: currentColor;
+  transform: translateX(-50%);
+  transition: transform .24s ease, opacity .2s ease;
+}
+
+.menu-toggle__bar:nth-child(1) {
+  top: calc(50% - 5px);
+}
+
+.menu-toggle__bar:nth-child(2) {
+  top: 50%;
   transform: translate(-50%, -50%);
-  transition: transform .24s ease, box-shadow .24s ease, opacity .2s ease;
 }
 
-.menu-toggle::before {
-  box-shadow: 0 -5px 0 currentColor, 0 5px 0 currentColor;
+.menu-toggle__bar:nth-child(3) {
+  bottom: calc(50% - 5px);
 }
 
-.menu-toggle::after {
-  opacity: 0;
-}
-
-.menu-toggle[aria-expanded="true"]::before {
-  box-shadow: none;
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(1) {
+  top: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
 }
 
-.menu-toggle[aria-expanded="true"]::after {
-  opacity: 1;
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__bar:nth-child(3) {
+  bottom: auto;
+  top: 50%;
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
@@ -389,6 +396,7 @@ a {
 }
 
 .sun,
+.moon-aura,
 .disco-moon {
   position: absolute;
   top: 80px;
@@ -396,8 +404,12 @@ a {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  z-index: 2;
   transition: transform 1.6s cubic-bezier(.55, 0, .3, 1), opacity .9s ease;
+}
+
+.sun,
+.disco-moon {
+  z-index: 2;
 }
 
 .sun {
@@ -410,20 +422,27 @@ a {
   opacity: 0;
 }
 
+.moon-aura,
 .disco-moon {
   transform: translateY(640px);
   opacity: 0;
 }
 
+:root.night .moon-aura,
 :root.night .disco-moon {
   transform: translateY(0);
   opacity: 1;
 }
 
-.disco-moon::before {
+.moon-aura {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.moon-aura::before {
   content: "";
   position: absolute;
-  inset: -40px;
+  inset: -60px;
   z-index: 0;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 62, 166, .45), transparent 65%);
@@ -435,16 +454,7 @@ a {
   inset: 0;
   z-index: 1;
   overflow: hidden;
-  overflow: clip;
   border-radius: 50%;
-  -webkit-clip-path: circle(50% at 50% 50%);
-  clip-path: circle(50% at 50% 50%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0 70%, transparent 70.75%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 0 70%, transparent 70.75%);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-  mask-size: 100% 100%;
   background:
     radial-gradient(circle at 31% 22%, rgba(255, 255, 255, .88) 0 8%, transparent 22%),
     radial-gradient(circle at 64% 69%, rgba(122, 82, 26, .18) 0 8%, transparent 18%),
@@ -2417,6 +2427,7 @@ a {
   }
 
   .sun,
+  .moon-aura,
   .disco-moon {
     top: 70px;
     right: 28px;
@@ -2424,7 +2435,7 @@ a {
     height: 76px;
   }
 
-  .disco-moon::before {
+  .moon-aura::before {
     inset: -24px;
   }
 
@@ -2432,6 +2443,7 @@ a {
     transform: translateY(380px);
   }
 
+  .moon-aura,
   .disco-moon {
     transform: translateY(380px);
   }
@@ -2478,6 +2490,7 @@ a {
 
   @media (max-width: 600px) {
     .sun,
+    .moon-aura,
     .disco-moon {
       top: 164px;
       right: 28px;
@@ -2955,6 +2968,7 @@ a {
   }
 
   .sun,
+  .moon-aura,
   .disco-moon {
     top: 178px;
     right: 48px;
@@ -2962,7 +2976,7 @@ a {
     height: 96px;
   }
 
-  .disco-moon::before {
+  .moon-aura::before {
     inset: -30px;
   }
 
@@ -2970,6 +2984,7 @@ a {
     transform: translateY(450px);
   }
 
+  .moon-aura,
   .disco-moon {
     transform: translateY(450px);
   }
@@ -3202,6 +3217,7 @@ a {
   }
 
   .sun,
+  .moon-aura,
   .disco-moon {
     top: 145px;
     right: 28px;
@@ -3209,7 +3225,7 @@ a {
     height: 68px;
   }
 
-  .disco-moon::before {
+  .moon-aura::before {
     inset: -20px;
   }
 
