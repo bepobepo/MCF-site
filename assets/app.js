@@ -92,7 +92,7 @@
         const dx = (centerX - 0.5) * 2;
         const dy = (centerY - 0.5) * 2;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance > 0.88) continue;
+        if (distance > 0.82) continue;
 
         const rowCurve = Math.abs(r - (rows - 1) / 2) / rows;
         const colCurve = Math.abs(c - (cols - 1) / 2) / cols;
@@ -103,7 +103,7 @@
         facet.style.width = `${100 / cols - 0.9 - rowCurve * 3}%`;
         facet.style.height = `${100 / rows - 1.1}%`;
         facet.style.background = colors[(r * 5 + c * 3) % colors.length];
-        const edgeFade = distance > 0.78 ? Math.max(0.58, (0.88 - distance) / 0.1) : 1;
+        const edgeFade = distance > 0.72 ? Math.max(0.58, (0.82 - distance) / 0.1) : 1;
         facet.style.opacity = String((0.5 + ((c + r) % 4) * 0.07 - colCurve * 0.08) * edgeFade);
         facet.style.animationDelay = `${-((c / cols) * 4.8 + (r % 4) * 0.12)}s`;
         face.appendChild(facet);

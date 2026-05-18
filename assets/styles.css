@@ -437,14 +437,10 @@ a {
 .moon-aura {
   z-index: 1;
   pointer-events: none;
-}
-
-.moon-aura::before {
-  content: "";
-  position: absolute;
-  inset: -60px;
-  z-index: 0;
-  border-radius: 50%;
+  top: 20px;
+  right: calc(var(--hero-content-edge) - 60px);
+  width: 280px;
+  height: 280px;
   background: radial-gradient(circle, rgba(255, 62, 166, .45), transparent 65%);
   animation: mc-glow 3.4s ease-in-out infinite;
 }
@@ -453,7 +449,6 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
-  overflow: hidden;
   border-radius: 50%;
   background:
     radial-gradient(circle at 31% 22%, rgba(255, 255, 255, .88) 0 8%, transparent 22%),
@@ -503,7 +498,7 @@ a {
 }
 
 .moon-face::after {
-  inset: -18%;
+  inset: 0;
   border-radius: 50%;
   background:
     conic-gradient(from 0deg at 50% 50%,
@@ -2435,8 +2430,11 @@ a {
     height: 76px;
   }
 
-  .moon-aura::before {
-    inset: -24px;
+  .moon-aura {
+    top: 46px;
+    right: 4px;
+    width: 124px;
+    height: 124px;
   }
 
   :root.night .sun {
@@ -2496,6 +2494,13 @@ a {
       right: 28px;
       width: 76px;
       height: 76px;
+    }
+
+    .moon-aura {
+      top: 140px;
+      right: 4px;
+      width: 124px;
+      height: 124px;
     }
 
     .light-beams {
@@ -2976,8 +2981,11 @@ a {
     height: 96px;
   }
 
-  .moon-aura::before {
-    inset: -30px;
+  .moon-aura {
+    top: 148px;
+    right: 18px;
+    width: 156px;
+    height: 156px;
   }
 
   :root.night .sun {
@@ -3225,8 +3233,11 @@ a {
     height: 68px;
   }
 
-  .moon-aura::before {
-    inset: -20px;
+  .moon-aura {
+    top: 125px;
+    right: 8px;
+    width: 108px;
+    height: 108px;
   }
 
   .light-beams {
