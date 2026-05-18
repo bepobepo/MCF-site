@@ -441,80 +441,68 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
-  overflow: hidden;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 31% 22%, rgba(255, 255, 255, .88) 0 8%, transparent 22%),
-    radial-gradient(circle at 64% 69%, rgba(122, 82, 26, .18) 0 8%, transparent 18%),
-    radial-gradient(circle at 36% 60%, rgba(122, 82, 26, .14) 0 6%, transparent 15%),
-    radial-gradient(circle at 50% 48%, #fff7bd 0%, #f7d96e 42%, #c69a3c 72%, #6d4b3a 100%);
-  box-shadow:
-    0 0 160px rgba(255, 236, 160, .46),
-    inset 22px 18px 34px rgba(255, 255, 255, .36),
-    inset -34px -38px 74px rgba(68, 36, 20, .46);
+  overflow: visible;
+  border-radius: 0;
+  filter: drop-shadow(0 0 70px rgba(255, 236, 160, .28));
   animation: mc-moon-turn 12s ease-in-out infinite;
 }
 
-.moon-face::before,
-.moon-face::after {
-  content: "";
+.moon-svg {
   position: absolute;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.moon-face::before {
   inset: 0;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at 30% 22%, rgba(255, 255, 255, .82), rgba(255, 255, 255, .22) 16%, transparent 31%),
-    linear-gradient(115deg, transparent 0 36%, rgba(255, 255, 255, .24) 44%, rgba(255, 255, 255, .06) 52%, transparent 62%),
-    linear-gradient(90deg,
-      transparent 0 7%,
-      rgba(255, 255, 255, .22) 7.4% 8.4%,
-      transparent 8.8% 19%,
-      rgba(255, 255, 255, .18) 19.4% 20.4%,
-      transparent 20.8% 33%,
-      rgba(255, 255, 255, .22) 33.4% 34.4%,
-      transparent 34.8% 48%,
-      rgba(42, 24, 104, .24) 48.4% 49.4%,
-      transparent 49.8% 64%,
-      rgba(42, 24, 104, .20) 64.4% 65.4%,
-      transparent 65.8% 80%,
-      rgba(255, 255, 255, .14) 80.4% 81.4%,
-      transparent 81.8% 100%),
-    repeating-linear-gradient(0deg,
-      rgba(255, 255, 255, .16) 0 1px,
-      transparent 1px 13px);
-  mix-blend-mode: screen;
-  opacity: .76;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter:
+    drop-shadow(22px 18px 26px rgba(255, 255, 255, .1))
+    drop-shadow(-12px -8px 52px rgba(255, 236, 160, .18));
 }
 
-.moon-face::after {
-  inset: -18%;
-  border-radius: 50%;
-  background:
-    conic-gradient(from 0deg at 50% 50%,
-      transparent 0deg 34deg,
-      rgba(255, 255, 255, .42) 46deg,
-      rgba(255, 246, 177, .28) 56deg,
-      transparent 72deg 176deg,
-      rgba(255, 255, 255, .22) 190deg,
-      transparent 208deg 360deg),
-    radial-gradient(ellipse at 34% 26%, rgba(255, 255, 255, .46), transparent 24%);
-  opacity: .66;
-  mix-blend-mode: screen;
-  transform-origin: 50% 50%;
-  animation: mc-moon-reflection 7.2s linear infinite;
+.moon-svg-base {
+  filter: drop-shadow(0 0 42px rgba(255, 236, 160, .28));
 }
 
 .moon-facet {
-  position: absolute;
-  border: 1px solid rgba(80, 50, 22, .18);
-  border-radius: 2px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .42);
+  stroke: rgba(80, 50, 22, .2);
+  stroke-width: .4;
   animation: mc-facet-glint 4.8s linear infinite;
   opacity: .72;
+}
+
+.moon-crater {
+  fill: rgba(122, 82, 26, .14);
+}
+
+.moon-crater-small {
+  fill: rgba(122, 82, 26, .11);
+}
+
+.moon-grid-lines {
+  fill: rgba(255, 255, 255, .16);
+  mix-blend-mode: screen;
+  opacity: .8;
+}
+
+.moon-svg-shine,
+.moon-diagonal-shine,
+.moon-reflection {
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.moon-svg-shine {
+  opacity: .82;
+}
+
+.moon-diagonal-shine {
+  opacity: .62;
+}
+
+.moon-reflection {
+  opacity: .66;
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: mc-moon-reflection 7.2s linear infinite;
 }
 
 .moon-sparkle,

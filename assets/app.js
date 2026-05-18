@@ -82,25 +82,146 @@
     const face = document.createElement("span");
     face.className = "moon-face";
     discoMoon.appendChild(face);
+    const svgNS = "http://www.w3.org/2000/svg";
+    const clipId = "moon-disco-clip";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.classList.add("moon-svg");
+    svg.setAttribute("viewBox", "0 0 100 100");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute("focusable", "false");
+
+    const defs = document.createElementNS(svgNS, "defs");
+    defs.innerHTML = `
+      <radialGradient id="moon-base-gradient" cx="35%" cy="30%" r="70%">
+        <stop offset="0%" stop-color="#fff8d4"></stop>
+        <stop offset="42%" stop-color="#f7d96e"></stop>
+        <stop offset="72%" stop-color="#c69a3c"></stop>
+        <stop offset="100%" stop-color="#6d4b3a"></stop>
+      </radialGradient>
+      <radialGradient id="moon-top-shine" cx="31%" cy="22%" r="32%">
+        <stop offset="0%" stop-color="#fff" stop-opacity=".88"></stop>
+        <stop offset="42%" stop-color="#fff" stop-opacity=".22"></stop>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
+      </radialGradient>
+      <linearGradient id="moon-diagonal-shine" x1="10%" y1="8%" x2="90%" y2="92%">
+        <stop offset="0%" stop-color="#fff" stop-opacity=".55"></stop>
+        <stop offset="32%" stop-color="#fff" stop-opacity=".04"></stop>
+        <stop offset="52%" stop-color="#fff" stop-opacity=".26"></stop>
+        <stop offset="70%" stop-color="#fff" stop-opacity=".03"></stop>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
+      </linearGradient>
+      <linearGradient id="moon-reflection-gradient" x1="0%" y1="25%" x2="100%" y2="75%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="0"></stop>
+        <stop offset="38%" stop-color="#fff" stop-opacity="0"></stop>
+        <stop offset="48%" stop-color="#fff" stop-opacity=".36"></stop>
+        <stop offset="58%" stop-color="#fff6b1" stop-opacity=".18"></stop>
+        <stop offset="72%" stop-color="#fff" stop-opacity="0"></stop>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"></stop>
+      </linearGradient>
+      <clipPath id="${clipId}">
+        <circle cx="50" cy="50" r="50"></circle>
+      </clipPath>
+    `;
+    svg.appendChild(defs);
+
+    const clipped = document.createElementNS(svgNS, "g");
+    clipped.setAttribute("clip-path", `url(#${clipId})`);
+    svg.appendChild(clipped);
+
+    const base = document.createElementNS(svgNS, "circle");
+    base.classList.add("moon-svg-base");
+    base.setAttribute("cx", "50");
+    base.setAttribute("cy", "50");
+    base.setAttribute("r", "50");
+    base.setAttribute("fill", "url(#moon-base-gradient)");
+    clipped.appendChild(base);
+
+    const facetGroup = document.createElementNS(svgNS, "g");
+    facetGroup.classList.add("moon-facet-grid");
+    clipped.appendChild(facetGroup);
     const colors = ["#fff8c7", "#ffe99a", "#f6d66e", "#fffdf0", "#d9e6ff", "#f4cfd8", "#dbc4ff", "#f0f4ff"];
     const cols = 18;
     const rows = 18;
     for (let r = 0; r < rows; r += 1) {
       for (let c = 0; c < cols; c += 1) {
-        const facet = document.createElement("span");
+        const facet = document.createElementNS(svgNS, "rect");
         const rowCurve = Math.abs(r - (rows - 1) / 2) / rows;
         const colCurve = Math.abs(c - (cols - 1) / 2) / cols;
-        facet.className = "moon-facet";
-        facet.style.left = `${(c / cols) * 100 + 0.45 + rowCurve * 1.5}%`;
-        facet.style.top = `${(r / rows) * 100 + 0.55}%`;
-        facet.style.width = `${100 / cols - 0.9 - rowCurve * 3}%`;
-        facet.style.height = `${100 / rows - 1.1}%`;
-        facet.style.background = colors[(r * 5 + c * 3) % colors.length];
+        facet.classList.add("moon-facet");
+        facet.setAttribute("x", String((c / cols) * 100 + 0.45 + rowCurve * 1.5));
+        facet.setAttribute("y", String((r / rows) * 100 + 0.55));
+        facet.setAttribute("width", String(100 / cols - 0.9 - rowCurve * 3));
+        facet.setAttribute("height", String(100 / rows - 1.1));
+        facet.setAttribute("rx", "1.1");
+        facet.setAttribute("fill", colors[(r * 5 + c * 3) % colors.length]);
         facet.style.opacity = String(0.5 + ((c + r) % 4) * 0.07 - colCurve * 0.08);
         facet.style.animationDelay = `${-((c / cols) * 4.8 + (r % 4) * 0.12)}s`;
-        face.appendChild(facet);
+        facetGroup.appendChild(facet);
       }
     }
+
+    const craterA = document.createElementNS(svgNS, "circle");
+    craterA.classList.add("moon-crater");
+    craterA.setAttribute("cx", "64");
+    craterA.setAttribute("cy", "69");
+    craterA.setAttribute("r", "8");
+    clipped.appendChild(craterA);
+
+    const craterB = document.createElementNS(svgNS, "circle");
+    craterB.classList.add("moon-crater", "moon-crater-small");
+    craterB.setAttribute("cx", "36");
+    craterB.setAttribute("cy", "60");
+    craterB.setAttribute("r", "6");
+    clipped.appendChild(craterB);
+
+    const shineA = document.createElementNS(svgNS, "circle");
+    shineA.classList.add("moon-svg-shine");
+    shineA.setAttribute("cx", "31");
+    shineA.setAttribute("cy", "22");
+    shineA.setAttribute("r", "31");
+    shineA.setAttribute("fill", "url(#moon-top-shine)");
+    clipped.appendChild(shineA);
+
+    const lines = document.createElementNS(svgNS, "g");
+    lines.classList.add("moon-grid-lines");
+    for (let i = 1; i < 7; i += 1) {
+      const x = [7.8, 19.9, 33.9, 48.9, 64.9, 80.9][i - 1];
+      const line = document.createElementNS(svgNS, "rect");
+      line.setAttribute("x", String(x));
+      line.setAttribute("y", "0");
+      line.setAttribute("width", "1");
+      line.setAttribute("height", "100");
+      lines.appendChild(line);
+    }
+    for (let i = 1; i < 8; i += 1) {
+      const line = document.createElementNS(svgNS, "rect");
+      line.setAttribute("x", "0");
+      line.setAttribute("y", String(i * 12.5));
+      line.setAttribute("width", "100");
+      line.setAttribute("height", ".7");
+      lines.appendChild(line);
+    }
+    clipped.appendChild(lines);
+
+    const diagonal = document.createElementNS(svgNS, "rect");
+    diagonal.classList.add("moon-diagonal-shine");
+    diagonal.setAttribute("x", "0");
+    diagonal.setAttribute("y", "0");
+    diagonal.setAttribute("width", "100");
+    diagonal.setAttribute("height", "100");
+    diagonal.setAttribute("fill", "url(#moon-diagonal-shine)");
+    clipped.appendChild(diagonal);
+
+    const reflection = document.createElementNS(svgNS, "rect");
+    reflection.classList.add("moon-reflection");
+    reflection.setAttribute("x", "-10");
+    reflection.setAttribute("y", "-10");
+    reflection.setAttribute("width", "120");
+    reflection.setAttribute("height", "120");
+    reflection.setAttribute("fill", "url(#moon-reflection-gradient)");
+    clipped.appendChild(reflection);
+
+    face.appendChild(svg);
 
     for (let i = 0; i < 26; i += 1) {
       const sparkle = document.createElement("span");
