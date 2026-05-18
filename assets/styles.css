@@ -396,7 +396,6 @@ a {
 }
 
 .sun,
-.moon-aura,
 .disco-moon {
   position: absolute;
   top: 80px;
@@ -404,12 +403,8 @@ a {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  transition: transform 1.6s cubic-bezier(.55, 0, .3, 1), opacity .9s ease;
-}
-
-.sun,
-.disco-moon {
   z-index: 2;
+  transition: transform 1.6s cubic-bezier(.55, 0, .3, 1), opacity .9s ease;
 }
 
 .sun {
@@ -422,25 +417,22 @@ a {
   opacity: 0;
 }
 
-.moon-aura,
 .disco-moon {
   transform: translateY(640px);
   opacity: 0;
 }
 
-:root.night .moon-aura,
 :root.night .disco-moon {
   transform: translateY(0);
   opacity: 1;
 }
 
-.moon-aura {
-  z-index: 1;
-  pointer-events: none;
-  top: 20px;
-  right: calc(var(--hero-content-edge) - 60px);
-  width: 280px;
-  height: 280px;
+.disco-moon::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: 0;
+  border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 62, 166, .45), transparent 65%);
   animation: mc-glow 3.4s ease-in-out infinite;
 }
@@ -449,6 +441,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: 1;
+  overflow: hidden;
   border-radius: 50%;
   background:
     radial-gradient(circle at 31% 22%, rgba(255, 255, 255, .88) 0 8%, transparent 22%),
@@ -498,7 +491,7 @@ a {
 }
 
 .moon-face::after {
-  inset: 0;
+  inset: -18%;
   border-radius: 50%;
   background:
     conic-gradient(from 0deg at 50% 50%,
@@ -2422,7 +2415,6 @@ a {
   }
 
   .sun,
-  .moon-aura,
   .disco-moon {
     top: 70px;
     right: 28px;
@@ -2430,18 +2422,14 @@ a {
     height: 76px;
   }
 
-  .moon-aura {
-    top: 46px;
-    right: 4px;
-    width: 124px;
-    height: 124px;
+  .disco-moon::before {
+    inset: -24px;
   }
 
   :root.night .sun {
     transform: translateY(380px);
   }
 
-  .moon-aura,
   .disco-moon {
     transform: translateY(380px);
   }
@@ -2488,19 +2476,11 @@ a {
 
   @media (max-width: 600px) {
     .sun,
-    .moon-aura,
     .disco-moon {
       top: 164px;
       right: 28px;
       width: 76px;
       height: 76px;
-    }
-
-    .moon-aura {
-      top: 140px;
-      right: 4px;
-      width: 124px;
-      height: 124px;
     }
 
     .light-beams {
@@ -2973,7 +2953,6 @@ a {
   }
 
   .sun,
-  .moon-aura,
   .disco-moon {
     top: 178px;
     right: 48px;
@@ -2981,18 +2960,14 @@ a {
     height: 96px;
   }
 
-  .moon-aura {
-    top: 148px;
-    right: 18px;
-    width: 156px;
-    height: 156px;
+  .disco-moon::before {
+    inset: -30px;
   }
 
   :root.night .sun {
     transform: translateY(450px);
   }
 
-  .moon-aura,
   .disco-moon {
     transform: translateY(450px);
   }
@@ -3225,7 +3200,6 @@ a {
   }
 
   .sun,
-  .moon-aura,
   .disco-moon {
     top: 145px;
     right: 28px;
@@ -3233,11 +3207,8 @@ a {
     height: 68px;
   }
 
-  .moon-aura {
-    top: 125px;
-    right: 8px;
-    width: 108px;
-    height: 108px;
+  .disco-moon::before {
+    inset: -20px;
   }
 
   .light-beams {

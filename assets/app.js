@@ -87,24 +87,16 @@
     const rows = 18;
     for (let r = 0; r < rows; r += 1) {
       for (let c = 0; c < cols; c += 1) {
-        const centerX = (c + 0.5) / cols;
-        const centerY = (r + 0.5) / rows;
-        const dx = (centerX - 0.5) * 2;
-        const dy = (centerY - 0.5) * 2;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance > 0.82) continue;
-
+        const facet = document.createElement("span");
         const rowCurve = Math.abs(r - (rows - 1) / 2) / rows;
         const colCurve = Math.abs(c - (cols - 1) / 2) / cols;
-        const facet = document.createElement("span");
         facet.className = "moon-facet";
         facet.style.left = `${(c / cols) * 100 + 0.45 + rowCurve * 1.5}%`;
         facet.style.top = `${(r / rows) * 100 + 0.55}%`;
         facet.style.width = `${100 / cols - 0.9 - rowCurve * 3}%`;
         facet.style.height = `${100 / rows - 1.1}%`;
         facet.style.background = colors[(r * 5 + c * 3) % colors.length];
-        const edgeFade = distance > 0.72 ? Math.max(0.58, (0.82 - distance) / 0.1) : 1;
-        facet.style.opacity = String((0.5 + ((c + r) % 4) * 0.07 - colCurve * 0.08) * edgeFade);
+        facet.style.opacity = String(0.5 + ((c + r) % 4) * 0.07 - colCurve * 0.08);
         facet.style.animationDelay = `${-((c / cols) * 4.8 + (r % 4) * 0.12)}s`;
         face.appendChild(facet);
       }
