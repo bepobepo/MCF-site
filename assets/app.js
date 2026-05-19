@@ -109,6 +109,10 @@
     if (modeToggle) {
       modeToggle.setAttribute("aria-label", isNight ? "Switch to day" : "Switch to night");
       modeToggle.setAttribute("aria-pressed", String(isNight));
+      const dayIcon = modeToggle.querySelector(".mode-toggle__icon--day");
+      const nightIcon = modeToggle.querySelector(".mode-toggle__icon--night");
+      if (dayIcon) dayIcon.hidden = isNight;
+      if (nightIcon) nightIcon.hidden = !isNight;
     }
     updateHeroMotion();
   }

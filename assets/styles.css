@@ -313,20 +313,20 @@ a {
 }
 
 .mode-toggle__icon {
-  opacity: 0;
-  transition: opacity .18s ease;
+  display: none;
 }
 
-.mode-toggle__icon--day {
-  opacity: 1;
+.mode-toggle__icon[hidden] {
+  display: none !important;
 }
 
-:root.night .mode-toggle__icon--day {
-  opacity: 0;
-}
-
+:root.day .mode-toggle__icon--day,
 :root.night .mode-toggle__icon--night {
-  opacity: 1;
+  display: block;
+}
+
+:root:not(.night) .mode-toggle__icon--day {
+  display: block;
 }
 
 :root.night .mode-toggle__knob {
