@@ -306,9 +306,27 @@ a {
 }
 
 .mode-toggle__knob .emoji-img {
+  grid-area: 1 / 1;
   display: block;
   width: 1.12em;
   height: 1.12em;
+}
+
+.mode-toggle__icon {
+  opacity: 0;
+  transition: opacity .18s ease;
+}
+
+.mode-toggle__icon--day {
+  opacity: 1;
+}
+
+:root.night .mode-toggle__icon--day {
+  opacity: 0;
+}
+
+:root.night .mode-toggle__icon--night {
+  opacity: 1;
 }
 
 :root.night .mode-toggle__knob {
@@ -465,8 +483,11 @@ a {
 .moon-facet {
   stroke: rgba(80, 50, 22, .2);
   stroke-width: .4;
-  animation: mc-facet-glint 4.8s linear infinite;
   opacity: .72;
+}
+
+:root.night.hero-glimmer-active:not(.hero-motion-paused) .hero .moon-facet--live {
+  animation: mc-facet-glint 4.8s linear infinite;
 }
 
 .moon-crater {
@@ -499,9 +520,10 @@ a {
 }
 
 .moon-reflection {
-  opacity: .66;
+  opacity: .74;
   transform-box: fill-box;
   transform-origin: 50% 50%;
+  will-change: transform;
   animation: mc-moon-reflection 7.2s linear infinite;
 }
 
@@ -602,6 +624,31 @@ a {
 
 :root.night .light-beams {
   opacity: 1;
+}
+
+:root.day .hero .disco-moon::before,
+:root.day .hero .moon-face,
+:root.day .hero .moon-facet,
+:root.day .hero .moon-reflection,
+:root.day .hero .moon-sparkle,
+:root.day .hero .star,
+:root.day .hero .light-beams::before,
+:root.day .hero .light-beams::after,
+:root.day .hero .fire,
+:root.day .hero .dancer,
+:root.day .hero .night-extra,
+:root.hero-motion-paused .hero .disco-moon::before,
+:root.hero-motion-paused .hero .moon-face,
+:root.hero-motion-paused .hero .moon-facet,
+:root.hero-motion-paused .hero .moon-reflection,
+:root.hero-motion-paused .hero .moon-sparkle,
+:root.hero-motion-paused .hero .star,
+:root.hero-motion-paused .hero .light-beams::before,
+:root.hero-motion-paused .hero .light-beams::after,
+:root.hero-motion-paused .hero .fire,
+:root.hero-motion-paused .hero .dancer,
+:root.hero-motion-paused .hero .night-extra {
+  animation-play-state: paused !important;
 }
 
 .hero-copy {
@@ -2117,11 +2164,32 @@ a {
   margin: 42px auto 0;
 }
 
+.scene-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .35s ease, visibility .35s ease;
+}
+
+:root.day .scene-layer--day,
+:root.night .scene-layer--night {
+  opacity: 1;
+  visibility: visible;
+}
+
 .scene-actor {
   position: absolute;
   font-size: calc(24px + var(--scale, 1) * 10px);
   line-height: 1;
   user-select: none;
+  animation-play-state: paused;
+}
+
+:root.day .scene-layer--day .scene-actor,
+:root.night .scene-layer--night .scene-actor {
+  animation-play-state: running;
 }
 
 .scene-actor .emoji-img {
@@ -2240,15 +2308,12 @@ a {
 @keyframes mc-facet-glint {
   0%, 100% {
     opacity: .42;
-    filter: brightness(.86) saturate(.9);
   }
   28% {
     opacity: .96;
-    filter: brightness(1.85) saturate(1.18);
   }
   42% {
     opacity: .58;
-    filter: brightness(1.02) saturate(1);
   }
 }
 

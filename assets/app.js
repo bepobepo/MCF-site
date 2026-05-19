@@ -4,9 +4,12 @@
   const modeToggle = document.querySelector("[data-mode-toggle]");
   const menuToggle = document.querySelector("[data-menu-toggle]");
   const mobileNav = document.querySelector("[data-mobile-nav]");
+  const hero = document.querySelector(".hero");
   const discoMoon = document.querySelector("[data-disco-moon]");
   const stars = document.querySelector("[data-stars]");
   const scene = document.querySelector("[data-disco-scene]");
+  let heroInView = true;
+  let glimmerTimer = 0;
   const browserChromeColors = {
     day: "#fdf3d3",
     night: "#160b34"
@@ -33,6 +36,36 @@
     sunflower: "assets/emoji/webp/sunflower.webp",
     trumpet: "assets/emoji/webp/trumpet.webp",
     womanDancing: "assets/emoji/webp/woman_dancing.webp"
+  };
+  const sceneSets = {
+    day: [
+      ["cow", 8, 12, 1.1],
+      ["trumpet", 20, 19, 1.25],
+      ["banjo", 31, 23, 1.15],
+      ["manDancing", 14, 52, 1.2],
+      ["cow", 25, 59, 1.05],
+      ["cow", 36, 56, 1.08],
+      ["womanDancing", 56, 43, 1.16],
+      ["sunflower", 66, 39, 1.22],
+      ["sunSymbol", 79, 45, 1.42],
+      ["blossom", 52, 68, 1.2],
+      ["herb", 63, 70, 1.24],
+      ["cherryBlossom", 74, 69, 1.24]
+    ],
+    night: [
+      ["cow", 8, 12, 1.08],
+      ["trumpet", 20, 19, 1.18],
+      ["banjo", 31, 23, 1.12],
+      ["discoBall", 45, 16, 1.18],
+      ["headphones", 57, 22, 1.12],
+      ["musicalNotes", 69, 16, 1.05],
+      ["crescentMoon", 82, 25, 1.2],
+      ["manDancing", 17, 56, 1.22],
+      ["womanDancing", 39, 51, 1.18],
+      ["fire", 56, 67, 1.25],
+      ["sparkles", 70, 63, 1.08],
+      ["cow", 84, 58, 1.1]
+    ]
   };
 
   function createEmojiImage(name) {
@@ -76,10 +109,44 @@
     if (modeToggle) {
       modeToggle.setAttribute("aria-label", isNight ? "Switch to day" : "Switch to night");
       modeToggle.setAttribute("aria-pressed", String(isNight));
-      const knob = modeToggle.querySelector(".mode-toggle__knob");
-      if (knob) knob.replaceChildren(createEmojiImage(isNight ? "moonFace" : "sun"));
     }
-    renderScene();
+    updateHeroMotion();
+  }
+
+  function updateHeroMotion() {
+    const isNight = root.classList.contains("night");
+    const active = isNight && heroInView && document.visibilityState !== "hidden";
+    root.classList.toggle("hero-motion-paused", !active);
+    if (!active) {
+      clearHeroGlimmer();
+    } else if (!root.classList.contains("hero-glimmer-active") && !glimmerTimer) {
+      glimmerTimer = window.setTimeout(() => {
+        glimmerTimer = 0;
+        if (root.classList.contains("night") && !root.classList.contains("hero-motion-paused")) {
+          root.classList.add("hero-glimmer-active");
+        }
+      }, 450);
+    }
+  }
+
+  function clearHeroGlimmer() {
+    if (glimmerTimer) {
+      window.clearTimeout(glimmerTimer);
+      glimmerTimer = 0;
+    }
+    root.classList.remove("hero-glimmer-active");
+  }
+
+  function setupHeroMotionObserver() {
+    if (!hero) return;
+    document.addEventListener("visibilitychange", updateHeroMotion);
+    if (!("IntersectionObserver" in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      heroInView = Boolean(entry && entry.isIntersecting);
+      updateHeroMotion();
+    }, { rootMargin: "180px 0px 180px 0px", threshold: 0 });
+    observer.observe(hero);
   }
 
   function syncBrowserChrome(mode) {
@@ -162,23 +229,22 @@
     const colors = ["#fff8c7", "#ffe99a", "#f6d66e", "#fffdf0", "#d9e6ff", "#f4cfd8", "#dbc4ff", "#f0f4ff"];
     const cols = 18;
     const rows = 18;
+    const facets = [];
     for (let r = 0; r < rows; r += 1) {
       for (let c = 0; c < cols; c += 1) {
-        const facet = document.createElementNS(svgNS, "rect");
         const rowCurve = Math.abs(r - (rows - 1) / 2) / rows;
         const colCurve = Math.abs(c - (cols - 1) / 2) / cols;
-        facet.classList.add("moon-facet");
-        facet.setAttribute("x", String((c / cols) * 100 + 0.45 + rowCurve * 1.5));
-        facet.setAttribute("y", String((r / rows) * 100 + 0.55));
-        facet.setAttribute("width", String(100 / cols - 0.9 - rowCurve * 3));
-        facet.setAttribute("height", String(100 / rows - 1.1));
-        facet.setAttribute("rx", "1.1");
-        facet.setAttribute("fill", colors[(r * 5 + c * 3) % colors.length]);
-        facet.style.opacity = String(0.5 + ((c + r) % 4) * 0.07 - colCurve * 0.08);
-        facet.style.animationDelay = `${-((c / cols) * 4.8 + (r % 4) * 0.12)}s`;
-        facetGroup.appendChild(facet);
+        const x = (c / cols) * 100 + 0.45 + rowCurve * 1.5;
+        const y = (r / rows) * 100 + 0.55;
+        const width = 100 / cols - 0.9 - rowCurve * 3;
+        const height = 100 / rows - 1.1;
+        const opacity = 0.5 + ((c + r) % 4) * 0.07 - colCurve * 0.08;
+        const delay = -((c / cols) * 4.8 + (r % 4) * 0.12);
+        const liveClass = (r * 7 + c * 11) % 3 === 0 ? " moon-facet--live" : "";
+        facets.push(`<rect class="moon-facet${liveClass}" x="${x}" y="${y}" width="${width}" height="${height}" rx="1.1" fill="${colors[(r * 5 + c * 3) % colors.length]}" style="opacity: ${opacity}; animation-delay: ${delay}s"></rect>`);
       }
     }
+    facetGroup.innerHTML = facets.join("");
 
     const craterA = document.createElementNS(svgNS, "circle");
     craterA.classList.add("moon-crater");
@@ -204,23 +270,15 @@
 
     const lines = document.createElementNS(svgNS, "g");
     lines.classList.add("moon-grid-lines");
+    const lineMarkup = [];
     for (let i = 1; i < 7; i += 1) {
       const x = [7.8, 19.9, 33.9, 48.9, 64.9, 80.9][i - 1];
-      const line = document.createElementNS(svgNS, "rect");
-      line.setAttribute("x", String(x));
-      line.setAttribute("y", "0");
-      line.setAttribute("width", "1");
-      line.setAttribute("height", "100");
-      lines.appendChild(line);
+      lineMarkup.push(`<rect x="${x}" y="0" width="1" height="100"></rect>`);
     }
     for (let i = 1; i < 8; i += 1) {
-      const line = document.createElementNS(svgNS, "rect");
-      line.setAttribute("x", "0");
-      line.setAttribute("y", String(i * 12.5));
-      line.setAttribute("width", "100");
-      line.setAttribute("height", ".7");
-      lines.appendChild(line);
+      lineMarkup.push(`<rect x="0" y="${i * 12.5}" width="100" height=".7"></rect>`);
     }
+    lines.innerHTML = lineMarkup.join("");
     clipped.appendChild(lines);
 
     const diagonal = document.createElementNS(svgNS, "rect");
@@ -243,6 +301,7 @@
 
     face.appendChild(svg);
 
+    const sparkleFragment = document.createDocumentFragment();
     for (let i = 0; i < 26; i += 1) {
       const sparkle = document.createElement("span");
       const angle = (i / 26) * Math.PI * 2;
@@ -254,13 +313,15 @@
       sparkle.style.top = `calc(50% + ${Math.sin(angle) * radius}px - ${size / 2}px)`;
       sparkle.style.fontSize = `${size}px`;
       sparkle.style.animationDelay = `${(i * 0.13) % 2}s`;
-      discoMoon.appendChild(sparkle);
+      sparkleFragment.appendChild(sparkle);
     }
+    discoMoon.appendChild(sparkleFragment);
   }
 
   function buildStars() {
     if (!stars || stars.dataset.ready) return;
     stars.dataset.ready = "true";
+    const starFragment = document.createDocumentFragment();
     for (let i = 0; i < 40; i += 1) {
       const star = document.createElement("span");
       let top = (i * 73) % 55 + 2;
@@ -275,53 +336,43 @@
       star.style.left = `${left}%`;
       star.style.fontSize = `${6 + (i % 4) * 3}px`;
       star.style.animationDelay = `${(i * 0.13) % 2}s`;
-      stars.appendChild(star);
+      starFragment.appendChild(star);
     }
+    stars.appendChild(starFragment);
   }
 
-  function renderScene() {
-    if (!scene) return;
-    const isNight = root.classList.contains("night");
-    const dayScene = [
-      ["cow", 8, 12, 1.1],
-      ["trumpet", 20, 19, 1.25],
-      ["banjo", 31, 23, 1.15],
-      ["manDancing", 14, 52, 1.2],
-      ["cow", 25, 59, 1.05],
-      ["cow", 36, 56, 1.08],
-      ["womanDancing", 56, 43, 1.16],
-      ["sunflower", 66, 39, 1.22],
-      ["sunSymbol", 79, 45, 1.42],
-      ["blossom", 52, 68, 1.2],
-      ["herb", 63, 70, 1.24],
-      ["cherryBlossom", 74, 69, 1.24]
-    ];
-    const nightScene = [
-      ["cow", 8, 12, 1.08],
-      ["trumpet", 20, 19, 1.18],
-      ["banjo", 31, 23, 1.12],
-      ["discoBall", 45, 16, 1.18],
-      ["headphones", 57, 22, 1.12],
-      ["musicalNotes", 69, 16, 1.05],
-      ["crescentMoon", 82, 25, 1.2],
-      ["manDancing", 17, 56, 1.22],
-      ["womanDancing", 39, 51, 1.18],
-      ["fire", 56, 67, 1.25],
-      ["sparkles", 70, 63, 1.08],
-      ["cow", 84, 58, 1.1]
-    ];
-    const emojis = isNight ? nightScene : dayScene;
-    scene.textContent = "";
-    emojis.forEach(([emojiName, left, top, scale], i) => {
-      const actor = document.createElement("span");
-      actor.className = `scene-actor ${["mc-bob", "mc-shimmy", "mc-bounce", "mc-drift", "mc-flicker"][i % 5]}`;
-      actor.appendChild(createEmojiImage(emojiName));
-      actor.style.left = `${left}%`;
-      actor.style.top = `${top}%`;
-      actor.style.setProperty("--scale", String(scale));
-      actor.style.animationDelay = `${(i * 0.31) % 1.7}s`;
-      scene.appendChild(actor);
+  function buildScene() {
+    if (!scene || scene.dataset.ready) return;
+    scene.dataset.ready = "true";
+    Object.entries(sceneSets).forEach(([mode, emojis]) => {
+      const layer = document.createElement("span");
+      const fragment = document.createDocumentFragment();
+      layer.className = `scene-layer scene-layer--${mode}`;
+      layer.setAttribute("aria-hidden", "true");
+      emojis.forEach(([emojiName, left, top, scale], i) => {
+        const actor = document.createElement("span");
+        actor.className = `scene-actor ${["mc-bob", "mc-shimmy", "mc-bounce", "mc-drift", "mc-flicker"][i % 5]}`;
+        actor.appendChild(createEmojiImage(emojiName));
+        actor.style.left = `${left}%`;
+        actor.style.top = `${top}%`;
+        actor.style.setProperty("--scale", String(scale));
+        actor.style.animationDelay = `${(i * 0.31) % 1.7}s`;
+        fragment.appendChild(actor);
+      });
+      layer.appendChild(fragment);
+      scene.appendChild(layer);
     });
+  }
+
+  function setupModeToggleIcons() {
+    const knob = modeToggle && modeToggle.querySelector(".mode-toggle__knob");
+    if (!knob || knob.dataset.ready) return;
+    knob.dataset.ready = "true";
+    const dayIcon = createEmojiImage("sun");
+    const nightIcon = createEmojiImage("moonFace");
+    dayIcon.classList.add("mode-toggle__icon", "mode-toggle__icon--day");
+    nightIcon.classList.add("mode-toggle__icon", "mode-toggle__icon--night");
+    knob.replaceChildren(dayIcon, nightIcon);
   }
 
   function closeMobileNav() {
@@ -393,6 +444,9 @@
 
   buildDiscoMoon();
   buildStars();
+  buildScene();
+  setupHeroMotionObserver();
+  setupModeToggleIcons();
   setupMobileNav();
   setupMediaObserver();
   setupSoundcloudEmbed();
