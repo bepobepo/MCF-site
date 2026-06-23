@@ -232,6 +232,62 @@
       line-height: 1.5;
     }
 
+    /* No-pressure + deadlines */
+    .ease {
+      background: var(--cream);
+      max-width: none;
+      padding: 4.5rem 1.5rem;
+    }
+    .ease-inner { max-width: 880px; margin: 0 auto; }
+
+    .reassure {
+      background: var(--paper);
+      border: 2px dashed var(--terracotta);
+      border-radius: 12px;
+      padding: 1.6rem 1.8rem;
+      transform: rotate(-0.5deg);
+      margin-top: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+    }
+    .reassure strong { color: var(--ink); }
+
+    .deadlines {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2.5rem;
+    }
+    .deadline {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      border-radius: 10px;
+      padding: 1.5rem 1.4rem;
+      position: relative;
+    }
+    .deadline:nth-child(odd)  { transform: rotate(-0.6deg); }
+    .deadline:nth-child(even) { transform: rotate(0.6deg); }
+    .deadline-stamp {
+      font-family: 'Special Elite', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+    .deadline-date {
+      font-family: 'Fraunces', serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .deadline-desc {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
     /* Submit section */
     .submit {
       background: var(--ink);
@@ -302,7 +358,7 @@
     @media (max-width: 760px) {
       .hero { padding: 4rem 1.3rem 3rem; }
       section { padding: 2.5rem 1.3rem; }
-      .about, .call, .submit { padding: 3.5rem 1.3rem; }
+      .about, .call, .ease, .submit { padding: 3.5rem 1.3rem; }
       .mast { box-shadow: 6px 6px 0 var(--terracotta); }
     }
   </style>
@@ -396,6 +452,30 @@
             <div class="pitch-stamp">no. 11</div>
             <div class="pitch-name">Advertisements</div>
             <p class="pitch-desc">Got something to sell, swap, or shout about? Write your own ad. Classifieds, display, or a full-page spread. Rates negotiable (we accept vibes).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ease">
+      <div class="ease-inner">
+        <span class="section-label">~ no pressure ~</span>
+        <h2>Half an idea? Perfect.</h2>
+        <p class="lead">You don't need a finished, polished, ready-to-print piece. A scribble on a napkin, a vague thought, a "wouldn't it be funny if…" — all very welcome. Tell us what you're thinking and we'll happily help shape it into something page-ready.</p>
+        <div class="reassure">
+          <strong>Genuinely:</strong> bring us the rough stuff. We love a half-baked idea, and we're more than happy to brainstorm, edit, illustrate, or gently nudge it over the finish line with you. No idea is too small or too silly. 🐮
+        </div>
+
+        <div class="deadlines">
+          <div class="deadline">
+            <div class="deadline-stamp">Step one · pitch us</div>
+            <div class="deadline-date">15 July</div>
+            <p class="deadline-desc">Initial idea deadline. Send us your idea — finished or not — so we can plan the issue and start helping you build it out.</p>
+          </div>
+          <div class="deadline">
+            <div class="deadline-stamp">Step two · the goods</div>
+            <div class="deadline-date">15 August</div>
+            <p class="deadline-desc">Final article / artwork deadline. Everything in by this date so we can lay it all out, photocopy, staple, and unleash issue zero.</p>
           </div>
         </div>
       </div>
