@@ -61,6 +61,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      flex-wrap: wrap;
     }
     .brand {
       font-family: 'Special Elite', 'Courier New', monospace;
@@ -262,11 +263,28 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
+    .btn-secondary {
+      background: transparent;
+      color: var(--paper);
+      border: 2px solid rgba(247, 238, 221, 0.45);
+    }
+    .btn-secondary:hover {
+      background: rgba(247, 238, 221, 0.12);
+      border-color: rgba(247, 238, 221, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .submit-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
 
     .submit-meta {
-      margin-top: 1.5rem;
       font-size: 0.95rem;
-      color: rgba(247, 238, 221, 0.65);
+      color: rgba(247, 238, 221, 0.55);
     }
 
     /* Footer */
@@ -294,7 +312,10 @@
   <header>
     <nav>
       <a href="index.html" class="brand" aria-label="Back to home">← The Herd</a>
-      <a href="fest.html" class="nav-cta">Mooncow Fest →</a>
+      <div style="display:flex;gap:0.6rem;align-items:center;flex-wrap:wrap;">
+        <a href="fest.html" class="nav-cta" style="background:transparent;color:var(--ink);border:1.5px solid rgba(44,31,36,0.25);">Mooncow Fest →</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbtSj5vwMUhzg4j2TeImbQgCUop8iOLMk1wkGHFbNAmcXoRg/viewform?usp=sharing&ouid=104329538921907973168" class="nav-cta" target="_blank" rel="noopener">Submit ↗</a>
+      </div>
     </nav>
   </header>
 
@@ -361,6 +382,21 @@
             <div class="pitch-name">Crosswords & puzzles</div>
             <p class="pitch-desc">Cryptics, sudokus, mazes, riddles, wordsearches, dingbats. The weirder the better.</p>
           </div>
+          <div class="pitch">
+            <div class="pitch-stamp">no. 09</div>
+            <div class="pitch-name">Art & photography</div>
+            <p class="pitch-desc">Photos, prints, collages, accidental double exposures. If it lives on a fridge door, it belongs here. Black and white photocopies beautifully.</p>
+          </div>
+          <div class="pitch">
+            <div class="pitch-stamp">no. 10</div>
+            <div class="pitch-name">Sports</div>
+            <p class="pitch-desc">Match reports, hot takes, dramatic retellings of the 2026 CowZine egg-and-spoon race. All sports considered. Yes, including darts.</p>
+          </div>
+          <div class="pitch">
+            <div class="pitch-stamp">no. 11</div>
+            <div class="pitch-name">Advertisements</div>
+            <p class="pitch-desc">Got something to sell, swap, or shout about? Write your own ad. Classifieds, display, or a full-page spread. Rates negotiable (we accept vibes).</p>
+          </div>
         </div>
       </div>
     </section>
@@ -370,8 +406,11 @@
         <span class="section-label" style="color: var(--rose);">~ submit ~</span>
         <h2>Got an idea? Send it our way.</h2>
         <p class="lead">Pitch a rough thought, drop us a finished piece, or just say hi. We'll write back with deadlines, formats, and friendly encouragement.</p>
-        <a href="mailto:theherd@moonco.ws?subject=CowZine submission" class="btn btn-primary">Email the editors</a>
-        <p class="submit-meta">theherd@moonco.ws</p>
+        <div class="submit-actions">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfbtSj5vwMUhzg4j2TeImbQgCUop8iOLMk1wkGHFbNAmcXoRg/viewform?usp=sharing&ouid=104329538921907973168" class="btn btn-primary" target="_blank" rel="noopener">Submit your idea ↗</a>
+          <a href="mailto:theherd@moonco.ws?subject=CowZine submission" class="btn btn-secondary">Email the editors</a>
+        </div>
+        <p class="submit-meta">or write to theherd@moonco.ws</p>
       </div>
     </section>
 
