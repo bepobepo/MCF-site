@@ -18,7 +18,7 @@
     spread.replaceChildren(...pages.map(n => {
       const img = new Image();
       img.src = `../../../assets/moows/issue-01/page-${String(n).padStart(2, '0')}.jpg`;
-      img.alt = `MOOWS issue 1, printed page ${n}. Download the PDF to read selectable text.`;
+      img.alt = `MOOWS issue 1, printed page ${n}. Open the PDF to read selectable text.`;
       img.addEventListener('error', () => { status.textContent = 'This page could not load. Try again or open the PDF below.'; });
       return img;
     }));
@@ -26,6 +26,21 @@
     spread.classList.remove('turn');
     void spread.offsetWidth;
     spread.classList.add('turn');
+    const links = document.querySelector('#web-versions');
+    const matches = (window.moowsArticles || []).filter(article => article.pages.some(n => pages.includes(n)));
+    links.replaceChildren(...matches.map(article => {
+      const link = document.createElement('a');
+      link.className = 'button';
+      link.href = `../${article.slug}/`;
+      link.textContent = `See the web version: ${article.title}`;
+      return link;
+    }));
+    if (!matches.length) {
+      const link = document.createElement('a');
+      link.href = '../../../cowzine.html#contents';
+      link.textContent = 'See the web version: all contents';
+      links.append(link);
+    }
     input.value = page;
     status.textContent = `Page${pages.length > 1 ? 's' : ''} ${pages.join('–')} of ${total}`;
     prev.disabled = page === 1;
@@ -55,7 +70,13 @@
   const full = document.querySelector('#fullscreen');
   full.hidden = !document.fullscreenEnabled;
   full.addEventListener('click', async () => {
-    try { await reader.requestFullscreen(); } catch { status.textContent = 'Fullscreen unavailable. You can still zoom in.'; }
+    try {
+      reader.classList.remove('zoomed');
+      const zoom = document.querySelector('#zoom');
+      zoom.setAttribute('aria-pressed', 'false');
+      zoom.textContent = 'Zoom in';
+      await reader.requestFullscreen();
+    } catch { status.textContent = 'Fullscreen unavailable. You can still zoom in.'; }
   });
   let touch;
   reader.addEventListener('touchstart', e => { touch = [e.changedTouches[0].clientX, e.changedTouches[0].clientY]; }, {passive:true});
