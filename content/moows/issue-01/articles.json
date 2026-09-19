@@ -795,7 +795,7 @@
   {
     "title": "Burning with the herd",
     "slug": "burning-with-the-herd",
-    "author": "Francois M; artwork by Daria Z",
+    "author": "Francois M",
     "pages": [
       20,
       21
@@ -873,12 +873,6 @@
         "src": "p20-02.jpg",
         "caption": "From the printed edition · page 20",
         "page": 20
-      },
-      {
-        "type": "image",
-        "src": "p21-01.jpg",
-        "caption": "Artwork by Daria Z · page 21",
-        "page": 21
       }
     ],
     "ocr": "not-required",
@@ -887,7 +881,7 @@
   {
     "title": "Moon Art",
     "slug": "moon-art",
-    "author": "Daria Z",
+    "author": "Daria Z, Lucy O",
     "pages": [
       21
     ],
@@ -1589,16 +1583,16 @@
         "poetry": true
       },
       {
-        "type": "image",
-        "src": "p33-01.jpg",
-        "caption": "From the printed edition · page 33",
-        "page": 33
-      },
-      {
         "type": "paragraph",
         "text": "**Tudoro le**",
         "page": 33,
         "poetry": true
+      },
+      {
+        "type": "image",
+        "src": "p33-02.jpg",
+        "caption": "From the printed edition · page 33",
+        "page": 33
       },
       {
         "type": "paragraph",
@@ -1625,16 +1619,16 @@
         "poetry": true
       },
       {
-        "type": "image",
-        "src": "p33-02.jpg",
-        "caption": "From the printed edition · page 33",
-        "page": 33
-      },
-      {
         "type": "paragraph",
         "text": "**Shephers are striking the trough**",
         "page": 33,
         "poetry": true
+      },
+      {
+        "type": "image",
+        "src": "p33-01.jpg",
+        "caption": "From the printed edition · page 33",
+        "page": 33
       },
       {
         "type": "paragraph",
