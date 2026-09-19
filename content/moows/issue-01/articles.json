@@ -122,7 +122,7 @@
   {
     "title": "How to make a rave",
     "slug": "how-to-make-a-rave",
-    "author": "Hackney Out-of-Hours Noise Team (Mads M & Marcel K)",
+    "author": "Hackney Out-of-Hours Noise Team",
     "pages": [
       8,
       9,
@@ -879,13 +879,13 @@
     "extra": false
   },
   {
-    "title": "Moon Art",
-    "slug": "moon-art",
+    "title": "Moon Cow Art",
+    "slug": "moon-cow-art",
     "author": "Daria Z, Lucy O",
     "pages": [
       21
     ],
-    "description": "Moon art.",
+    "description": "Moon Cow art.",
     "blocks": [
       {
         "type": "image",
