@@ -1,1 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="15147" viewBox="0 0 1200 15147"><g fill="#ECD099"><g transform="translate(233 350) rotate(0) scale(2.5)"><rect x="-92" y="-55" width="184" height="131"/></g><g transform="translate(267 1254) rotate(180) scale(2.5)"><path d="M-102 0a102 102 0 0 1 204 0Z"/></g><g transform="translate(387 2042) rotate(180) scale(2.5)"><circle r="73"/></g><g transform="translate(636 2722) rotate(0) scale(2.5)"><rect x="-109" y="-55" width="218" height="124"/></g><g transform="translate(838 3485) rotate(90) scale(2.5)"><path d="M-100 0a100 100 0 0 1 200 0Z"/></g><g transform="translate(690 4426) rotate(90) scale(2.5)"><rect x="-88" y="-55" width="176" height="134"/></g><g transform="translate(792 5160) rotate(90) scale(2.5)"><path d="M-81 0a81 81 0 0 1 162 0Z"/></g><g transform="translate(776 6102) rotate(180) scale(2.5)"><path d="M-104 0a104 104 0 0 1 208 0Z"/></g><g transform="translate(717 6979) rotate(180) scale(2.5)"><rect x="-93" y="-55" width="186" height="103"/></g><g transform="translate(892 7918) rotate(0) scale(2.5)"><path d="M-81 0a81 81 0 0 1 162 0Z"/></g><g transform="translate(709 8845) rotate(0) scale(2.5)"><rect x="-89" y="-55" width="178" height="132"/></g><g transform="translate(640 9795) rotate(0) scale(2.5)"><rect x="-115" y="-55" width="230" height="97"/></g><g transform="translate(523 10732) rotate(270) scale(2.5)"><circle r="86"/></g><g transform="translate(331 11463) rotate(0) scale(2.5)"><path d="M-73 0a73 73 0 0 1 146 0Z"/></g><g transform="translate(855 12233) rotate(270) scale(2.5)"><circle r="94"/></g><g transform="translate(709 13070) rotate(0) scale(2.5)"><circle r="82"/></g><g transform="translate(393 13934) rotate(90) scale(2.5)"><circle r="74"/></g><g transform="translate(487 14747) rotate(270) scale(2.5)"><circle r="76"/></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1200 15147">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ecd099;
+      }
+    </style>
+  </defs>
+  <!-- Generator: Adobe Illustrator 28.6.0, SVG Export Plug-In . SVG Version: 1.2.0 Build 709)  -->
+  <g>
+    <g id="Layer_1">
+      <rect class="cls-1" x="3" y="3454" width="460" height="327.5"/>
+      <path class="cls-1" d="M522,1254c0,140.8-114.2,255-255,255S12,1394.8,12,1254h510Z"/>
+      <circle class="cls-1" cx="704.5" cy="395" r="182.5"/>
+      <rect class="cls-1" x="363.5" y="2584.5" width="545" height="310"/>
+      <path class="cls-1" d="M887,1697c138.1,0,250,111.9,250,250s-111.9,250-250,250v-500Z"/>
+      <rect class="cls-1" x="492.5" y="4206" width="335" height="440"/>
+      <path class="cls-1" d="M792,4957.5c111.8,0,202.5,90.7,202.5,202.5s-90.7,202.5-202.5,202.5v-405Z"/>
+      <path class="cls-1" d="M1036,6102c0,143.6-116.4,260-260,260s-260-116.4-260-260h520Z"/>
+      <rect class="cls-1" x="484.5" y="6859" width="465" height="257.5"/>
+      <path class="cls-1" d="M689.5,7918c0-111.8,90.7-202.5,202.5-202.5s202.5,90.7,202.5,202.5h-405Z"/>
+      <rect class="cls-1" x="486.5" y="8707.5" width="445" height="330"/>
+      <rect class="cls-1" x="352.5" y="9657.5" width="575" height="242.5"/>
+      <circle class="cls-1" cx="523" cy="10732" r="215"/>
+      <path class="cls-1" d="M148.5,11463c0-100.8,81.7-182.5,182.5-182.5s182.5,81.7,182.5,182.5H148.5Z"/>
+      <circle class="cls-1" cx="855" cy="12233" r="235"/>
+      <circle class="cls-1" cx="709" cy="13070" r="205"/>
+      <circle class="cls-1" cx="393" cy="13934" r="185"/>
+      <circle class="cls-1" cx="487" cy="14747" r="190"/>
+    </g>
+  </g>
+</svg>
